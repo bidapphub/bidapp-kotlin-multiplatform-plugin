@@ -6,9 +6,9 @@ import io.bidapp.demo.isEnableLogging
 import io.bidapp.demo.isEnableRewarded
 import io.bidapp.demo.isEnableTestMode
 import io.bidapp.demo.pubId
-import io.bidapp.kotlin_multiplatform.BIDConfiguration
-import io.bidapp.kotlin_multiplatform.BidConsent
-import io.bidapp.kotlin_multiplatform.BidappAds
+import io.bidapp.kmp.BIDConfiguration
+import io.bidapp.kmp.BidConsent
+import io.bidapp.kmp.BidappAds
 
 
 
@@ -24,7 +24,7 @@ fun bidappInit(activity: Any? = null) {
     BidConsent.setCOPPA(true)
     BidConsent.setGDPR(true)
 
-    BidappAds.start(pubId, bidConfig, activity)
+    io.bidapp.kmp.BidappAds.start(pubId, bidConfig, activity)
 
 }
 

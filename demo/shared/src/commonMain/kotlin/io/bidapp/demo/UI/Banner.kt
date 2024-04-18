@@ -8,7 +8,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import io.bidapp.demo.Data.BIDAppAdsData
-import io.bidapp.kotlin_multiplatform.BIDBanner
+import io.bidapp.kmp.BIDBanner
 
 @Composable
 fun Banner(bidappAdsData : BIDAppAdsData, view : MutableState<Any?>){
@@ -24,4 +24,4 @@ fun Banner(bidappAdsData : BIDAppAdsData, view : MutableState<Any?>){
 }
 
 @Composable
-expect fun ShowBanner(banner: BIDBanner?, onsuccess: (view: Any) -> Unit)
+expect fun ShowBanner(banner: io.bidapp.kmp.BIDBanner?, onsuccess: (view: Any) -> Unit)

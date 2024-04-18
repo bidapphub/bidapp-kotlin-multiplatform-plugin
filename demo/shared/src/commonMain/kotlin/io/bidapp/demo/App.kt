@@ -20,7 +20,7 @@ import io.bidapp.demo.UI.Logo
 import io.bidapp.demo.Data.AdsEvents
 import io.bidapp.demo.Data.BIDAppAdsData
 import io.bidapp.demo.UI.Banner
-import io.bidapp.kotlin_multiplatform.getPlatformName
+import io.bidapp.kmp.getPlatformName
 
 @Composable
 fun App(bidappAdsData: BIDAppAdsData, activityOrUIViewController: Any?) {
@@ -47,7 +47,7 @@ fun App(bidappAdsData: BIDAppAdsData, activityOrUIViewController: Any?) {
                 }
 
                 override fun loadBanner(networkID: Int?) {
-                    if (getPlatformName() == "Android" && networkID == 7) requestLayout(view.value)
+                    if (io.bidapp.kmp.getPlatformName() == "Android" && networkID == 7) requestLayout(view.value)
                 }
             }
             bidappAdsData.adsEvents = adsEvents
@@ -55,7 +55,7 @@ fun App(bidappAdsData: BIDAppAdsData, activityOrUIViewController: Any?) {
     }
     DisposableEffect(Unit) {
         onDispose {
-            if (getPlatformName() == "Android") {
+            if (io.bidapp.kmp.getPlatformName() == "Android") {
                 bidappAdsData.destroy()
             }
         }

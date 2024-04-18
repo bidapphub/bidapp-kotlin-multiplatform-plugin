@@ -15,7 +15,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "kotlinmultiplatform"
+rootProject.name = "BidappAds_Demo"
 include(":demo:androidApp")
-include(":plugin")
+include(":bidappAds")
 include(":demo:shared")

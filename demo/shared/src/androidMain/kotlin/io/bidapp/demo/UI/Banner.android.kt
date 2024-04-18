@@ -13,7 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import io.bidapp.kotlin_multiplatform.BIDBanner
+import io.bidapp.kmp.BIDBanner
 
 @Composable
 actual fun ShowBanner(banner : BIDBanner?, onsuccess:(view : Any)->Unit)  {

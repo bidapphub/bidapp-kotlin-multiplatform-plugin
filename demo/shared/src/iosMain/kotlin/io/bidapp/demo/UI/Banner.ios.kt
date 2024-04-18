@@ -11,14 +11,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.interop.UIKitView
 import androidx.compose.ui.unit.dp
-import io.bidapp.kotlin_multiplatform.BIDBanner
+import io.bidapp.kmp.BIDBanner
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.UIKit.UIView
 
 
 @OptIn(ExperimentalForeignApi::class)
 @Composable
-actual fun ShowBanner(banner : BIDBanner?, onsuccess:(view : Any)->Unit)  {
+actual fun ShowBanner(banner : io.bidapp.kmp.BIDBanner?, onsuccess:(view : Any)->Unit)  {
     val width = remember {  mutableIntStateOf(if (banner?.getBannerSize()?.isBanner_320x50() == true) 320 else 300) }
     val height = remember {  mutableIntStateOf(if (banner?.getBannerSize()?.isBanner_320x50() == true) 50 else 250) }
     Box(

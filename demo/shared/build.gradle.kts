@@ -19,17 +19,17 @@ kotlin {
     iosSimulatorArm64()
 
     cocoapods {
-        summary = "Some description for the Shared Module"
-        homepage = "Link to the Shared Module homepage"
+        summary = "Bidapp ads for kotlin multiplatform"
+        homepage = "https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin"
         version = "1.0"
         ios.deploymentTarget = "16.0"
         podfile = project.file("../iosApp/Podfile")
         pod("bidapp/AdMob")
         pod("bidapp/Unity")
         pod("bidapp/Liftoff")
-       // pod("bidapp/Applovin")
-       // pod("bidapp/ApplovinMax")
-       // pod("bidapp/Chartboost")
+        // pod("bidapp/Applovin")
+        // pod("bidapp/ApplovinMax")
+        // pod("bidapp/Chartboost")
         framework {
             baseName = "shared"
             isStatic = true
@@ -38,7 +38,7 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":plugin"))
+            implementation(project(":bidappAds"))
             implementation(compose.ui)
             implementation(compose.material)
             implementation(compose.foundation)
@@ -52,7 +52,7 @@ kotlin {
 }
 
 android {
-    namespace = "io.bidapp.kotlinmultiwork"
+    namespace = "io.bidapp.demo"
     compileSdk = 34
     defaultConfig {
         minSdk = 22
