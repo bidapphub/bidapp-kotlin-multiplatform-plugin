@@ -21,9 +21,8 @@ Complete integration instructions and usage guide for the Bidapp Ads Kotlin Mult
 
 # Demo APP
 <div align="center">
-  <img alt="Logo" src="https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/ca3dd16c-d331-42b7-8fdc-d523f4dbe7d7" width="350"/>
-  <img alt="Logo" src="https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/beb03923-69e8-43ca-9382-338a4cfa33af" width="350"/>
-
+  <img alt="Logo" src="https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/823f5ced-e486-478d-9263-b00d97cf1519" width="350"/>
+  <img alt="Logo" src="https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/12a20f5a-cf49-464c-9633-ad5de6ec9a41" width="350"/>
 </div>
 <br/><br/>
 The demo directory contains a shared module and test applications for Android and iOS
@@ -78,19 +77,19 @@ const val isEnableLogging = true
 ```
 
 
-### Samples
-![interstitialios](https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/367af6a6-8013-40fb-aea3-c1d0724f875e)
-![rewardedios](https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/ca1878a1-0527-4f22-8609-99efda607cd9)
-![mrecios](https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/78730b45-da9a-472e-8d9b-b3cfa67d5d85)
-![bannerios](https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/de314a7a-4a9a-4ba9-b1d6-142e3be57161)
+
+# IOS
+![interstitialios](https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/5e9a2bfb-ae33-4560-881c-d14f3f547fe1)
+![rewardedios](https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/02127e04-4987-4e2c-b340-f9878c495694)
+![mrecios](https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/3e6da323-0172-47f1-a316-fc5dab1a746c)
+![bannerios](https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/eb4a266f-4bc0-48a8-b3f1-da77ad6ab679)
 
 
-
-
-![interstitialandroid](https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/cc7d2789-fd1c-4e74-b181-ece7ca6d0152)
-![rewardedandroid](https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/64da5ea4-56c3-47b1-9409-6379d29a11ac)
-![mrecandroid](https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/a47799d4-0fb0-40d7-9293-0e36da7d31f9)
-![bannerandroid](https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/8d984357-b405-43e2-bad4-ed7a8bb16ecb)
+# Android
+![interstitialandroid](https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/14bba893-1185-4238-9a8d-a16321e5d77f)
+![rewardedandroid](https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/7909f3d7-172e-4e72-b76e-2a5c332af238)
+![mrecandroid](https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/53ca3cc2-9ebd-4c8c-9992-8acc3399a7cf)
+![bannerandroid](https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/197dbe9c-9ccc-4f51-b136-9a7e19a0391b)
 
 
 
