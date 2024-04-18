@@ -8,8 +8,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import kotlinmultiplatform.demo.shared.generated.resources.Res
-import kotlinmultiplatform.demo.shared.generated.resources.bidapp_logo
+import bidappads_demo.demo.shared.generated.resources.Res
+import bidappads_demo.demo.shared.generated.resources.bidapp_logo
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 

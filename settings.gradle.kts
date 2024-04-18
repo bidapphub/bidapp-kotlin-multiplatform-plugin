@@ -15,7 +15,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "BidappAds_Demo"
+rootProject.name = "BidappAds-Demo"
 include(":demo:androidApp")
 include(":bidappAds")
 include(":demo:shared")

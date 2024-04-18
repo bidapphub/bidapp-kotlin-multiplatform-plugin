@@ -31,7 +31,7 @@ kotlin {
         podfile = project.file(bidappPods)
         pod("bidapp/SDK")
         framework {
-            baseName = "bidapp_kmp"
+            baseName = "io.bidapp.kmp"
             isStatic = true
         }
     }
