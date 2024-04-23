@@ -12,13 +12,13 @@ import io.bidapp.sdk.BannerView
 
 
 
-actual class BIDBanner actual constructor(applicationActivity: Any?, bidBannerSize: BIDAdFormat) {
+public actual class BIDBanner actual constructor(applicationActivity: Any?, bidBannerSize: BIDAdFormat) {
     private var banner: BannerView? = createBanner(applicationActivity, bidBannerSize)
     private var delegate: BIDBannerViewDelegate? = null
     private var bannerSize : BIDAdFormat? = bidBannerSize
 
 
-    actual fun setBannerViewDelegate(bidBannerShow: BIDBannerShow) {
+    public actual fun setBannerViewDelegate(bidBannerShow: BIDBannerShow) {
         if (banner != null) {
             delegate = object : BIDBannerViewDelegate {
                 override fun adViewClicked(adView: BannerView, adInfo: AdInfo?) {
@@ -52,20 +52,20 @@ actual class BIDBanner actual constructor(applicationActivity: Any?, bidBannerSi
     }
 
 
-    actual fun refresh() {
+    public actual fun refresh() {
          banner?.refreshAd()
     }
 
-    actual fun startAutorefresh(interval: Double) {
+    public actual fun startAutorefresh(interval: Double) {
         banner?.startAutoRefresh(interval)
     }
 
-    actual fun stopAutorefresh() {
+    public actual fun stopAutorefresh() {
         banner?.stopAutoRefresh()
     }
 
 
-    actual fun destroy() {
+    public actual fun destroy() {
         delegate = null
         banner?.destroy()
         banner = null
@@ -86,7 +86,7 @@ actual class BIDBanner actual constructor(applicationActivity: Any?, bidBannerSi
     }
 
 
-    actual fun bindBanner(container: Any?) {
+    public actual fun bindBanner(container: Any?) {
         when(container){
             container as? FrameLayout -> {
                 (container as? FrameLayout)?.addView(banner)
@@ -98,7 +98,7 @@ actual class BIDBanner actual constructor(applicationActivity: Any?, bidBannerSi
         }
     }
 
-    actual fun getBannerSize(): BIDAdFormat? {
+    public actual fun getBannerSize(): BIDAdFormat? {
         return bannerSize
     }
 }

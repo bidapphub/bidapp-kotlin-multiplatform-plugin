@@ -1,11 +1,11 @@
 package io.bidapp.kmp
 
-expect class BIDRewarded(activity : Any?){
-    fun showRewarded(applicationActivity: Any?, bidShowDelegate : BIDFullShow?)
-    fun setLoadDelegate(bidLoadDelegate: BIDFullLoad?)
-    fun setAutoLoad(isAutoLoad: Boolean)
-    fun isInterstitialReady(): Boolean
-    fun load()
-    fun destroy()
+public expect class BIDRewarded(activity : Any?){
+    public fun showRewarded(applicationActivity: Any?, bidShowDelegate : BIDFullShow?)
+    public fun setLoadDelegate(bidLoadDelegate: BIDFullLoad?)
+    public fun setAutoLoad(isAutoLoad: Boolean)
+    public fun isInterstitialReady(): Boolean
+    public fun load()
+    public fun destroy()
 }
 

@@ -13,11 +13,11 @@ import platform.darwin.NSObject
 
 
 @OptIn(ExperimentalForeignApi::class)
-actual class BIDRewarded actual constructor(activity : Any?){
+public actual class BIDRewarded actual constructor(activity : Any?){
     private var rewarded : BIDRewarded? = BIDRewarded()
     private var rewardedShowDelegate : BIDRewardedDelegateProtocol? = null
     private var rewardedLoadDelegate : BIDFullscreenLoadDelegateProtocol? = null
-    actual fun showRewarded(
+    public actual fun showRewarded(
         applicationActivity: Any?,
         bidShowDelegate: BIDFullShow?
     ) {
@@ -54,7 +54,7 @@ actual class BIDRewarded actual constructor(activity : Any?){
         rewarded?.showWithDelegate(rewardedShowDelegate as BIDRewardedDelegateProtocol)
     }
 
-    actual fun setLoadDelegate(bidLoadDelegate: BIDFullLoad?) {
+    public actual fun setLoadDelegate(bidLoadDelegate: BIDFullLoad?) {
         rewardedLoadDelegate = object : BIDFullscreenLoadDelegateProtocol, NSObject(){
             override fun didFailToLoadAd(adInfo: BIDAdInfo, error: NSError) {
                 bidLoadDelegate?.failLoad(createBidAdInfo(adInfo), error.localizedDescription())
@@ -67,19 +67,19 @@ actual class BIDRewarded actual constructor(activity : Any?){
         rewarded?.setLoadDelegate(rewardedLoadDelegate)
     }
 
-    actual fun setAutoLoad(isAutoLoad: Boolean) {
+    public actual fun setAutoLoad(isAutoLoad: Boolean) {
         rewarded?.autoload = isAutoLoad
     }
 
-    actual fun isInterstitialReady(): Boolean {
+    public actual fun isInterstitialReady(): Boolean {
         return rewarded?.isAdReady() ?: false
     }
 
-    actual fun load() {
+    public actual fun load() {
         rewarded?.load()
     }
 
-    actual fun destroy() {
+    public actual fun destroy() {
         rewarded = null
         rewardedLoadDelegate = null
         rewardedShowDelegate = null

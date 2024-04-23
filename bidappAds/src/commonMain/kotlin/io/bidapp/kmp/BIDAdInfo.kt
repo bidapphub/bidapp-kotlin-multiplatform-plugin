@@ -1,6 +1,6 @@
 package io.bidapp.kmp
 
-data class BIDAdInfo(
+public data class BIDAdInfo(
     var adFormat : String?,
     var adTag : String?,
     var networkId : Int?,

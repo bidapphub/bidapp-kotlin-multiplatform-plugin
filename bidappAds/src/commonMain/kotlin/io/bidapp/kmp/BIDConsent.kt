@@ -1,18 +1,18 @@
 package io.bidapp.kmp
 
-object BidConsent {
-    fun setCCPA(CCPA:Boolean){
+public object BidConsent {
+    public fun setCCPA(CCPA:Boolean){
         io.bidapp.kmp.setCCPA(CCPA)
     }
-    fun setCOPPA(COPPA:Boolean){
+    public fun setCOPPA(COPPA:Boolean){
         io.bidapp.kmp.setCOPPA(COPPA)
     }
-    fun setGDPR(GDPR:Boolean){
+    public fun setGDPR(GDPR:Boolean){
         io.bidapp.kmp.setGDPR(GDPR)
     }
 
 }
 
-expect fun setCCPA(CCPA:Boolean)
-expect fun setCOPPA(COPPA:Boolean)
-expect fun setGDPR(GDPR:Boolean)
+public expect fun setCCPA(CCPA:Boolean)
+public expect fun setCOPPA(COPPA:Boolean)
+public expect fun setGDPR(GDPR:Boolean)

@@ -9,14 +9,14 @@ import platform.UIKit.UIView
 import platform.darwin.NSObject
 
 @OptIn(ExperimentalForeignApi::class)
-actual class BIDBanner actual constructor(applicationActivity: Any?, bidBannerSize: BIDAdFormat) {
+public actual class BIDBanner actual constructor(applicationActivity: Any?, bidBannerSize: BIDAdFormat) {
     private var bannerViewDelegate: BIDBannerViewDelegateProtocol? = object : BIDBannerViewDelegateProtocol, NSObject(){}
     private var banner: BIDBannerView? = createBanner(bidBannerSize)
     private var bannerSize : BIDAdFormat? = bidBannerSize
 
 
 
-    actual fun setBannerViewDelegate(bidBannerShow: BIDBannerShow) {
+    public actual fun setBannerViewDelegate(bidBannerShow: BIDBannerShow) {
         bannerViewDelegate = object : BIDBannerViewDelegateProtocol, NSObject(){
             override fun bannerDidClick(banner: BIDBannerView, adInfo: BIDAdInfo) {
                 bidBannerShow.click(createBidAdInfo(adInfo), this@BIDBanner)
@@ -47,20 +47,20 @@ actual class BIDBanner actual constructor(applicationActivity: Any?, bidBannerSi
         banner?.setDelegate(bannerViewDelegate)
     }
 
-    actual fun refresh() {
+    public actual fun refresh() {
         banner?.refreshAd()
     }
 
-    actual fun startAutorefresh(interval: Double) {
+    public actual fun startAutorefresh(interval: Double) {
         banner?.startAutorefresh(30.0)
     }
 
-    actual fun stopAutorefresh() {
+    public actual fun stopAutorefresh() {
         banner?.stopAutorefresh()
     }
 
 
-    actual fun destroy() {
+    public actual fun destroy() {
         banner?.removeFromSuperview()
         banner = null
         bannerViewDelegate = null
@@ -75,7 +75,7 @@ actual class BIDBanner actual constructor(applicationActivity: Any?, bidBannerSi
         }
     }
 
-    actual fun bindBanner(container: Any?) {
+    public actual fun bindBanner(container: Any?) {
         try {
             banner?.let { (container as? UIView)?.addSubview(it) }
         }catch (e:Exception){
@@ -83,7 +83,7 @@ actual class BIDBanner actual constructor(applicationActivity: Any?, bidBannerSi
         }
     }
 
-    actual fun getBannerSize(): BIDAdFormat? {
+    public actual fun getBannerSize(): BIDAdFormat? {
         return bannerSize
     }
 

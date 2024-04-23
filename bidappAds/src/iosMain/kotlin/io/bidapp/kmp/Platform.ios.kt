@@ -1,5 +1,5 @@
 package io.bidapp.kmp
 
-actual fun getPlatformName(): String {
+public actual fun getPlatformName(): String {
     return "IOS"
 }

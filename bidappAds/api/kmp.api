@@ -1,0 +1,212 @@
+public final class io/bidapp/kmp/BIDAdFormat {
+	public static final field Companion Lio/bidapp/kmp/BIDAdFormat$Companion;
+	public fun <init> ()V
+	public final fun isBanner_300x250 ()Z
+	public final fun isBanner_320x50 ()Z
+	public final fun isInterstitial ()Z
+	public final fun isRewarded ()Z
+}
+
+public final class io/bidapp/kmp/BIDAdFormat$Companion {
+	public final fun getBanner_300x250 ()Lio/bidapp/kmp/BIDAdFormat;
+	public final fun getBanner_320x50 ()Lio/bidapp/kmp/BIDAdFormat;
+	public final fun getInterstitial ()Lio/bidapp/kmp/BIDAdFormat;
+	public final fun getRewarded ()Lio/bidapp/kmp/BIDAdFormat;
+}
+
+public final class io/bidapp/kmp/BIDAdFormatKt {
+	public static final field Banner Ljava/lang/String;
+	public static final field Interstitial Ljava/lang/String;
+	public static final field Mrec Ljava/lang/String;
+	public static final field Rewarded Ljava/lang/String;
+}
+
+public final class io/bidapp/kmp/BIDAdInfo {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/Integer;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lio/bidapp/kmp/BIDAdInfo;
+	public static synthetic fun copy$default (Lio/bidapp/kmp/BIDAdInfo;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/bidapp/kmp/BIDAdInfo;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAdFormat ()Ljava/lang/String;
+	public final fun getAdTag ()Ljava/lang/String;
+	public final fun getLoadSessionId ()Ljava/lang/String;
+	public final fun getNetworkId ()Ljava/lang/Integer;
+	public final fun getShowSessionId ()Ljava/lang/String;
+	public final fun getWaterfallId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun setAdFormat (Ljava/lang/String;)V
+	public final fun setAdTag (Ljava/lang/String;)V
+	public final fun setLoadSessionId (Ljava/lang/String;)V
+	public final fun setNetworkId (Ljava/lang/Integer;)V
+	public final fun setShowSessionId (Ljava/lang/String;)V
+	public final fun setWaterfallId (Ljava/lang/String;)V
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/bidapp/kmp/BIDBanner {
+	public fun <init> (Ljava/lang/Object;Lio/bidapp/kmp/BIDAdFormat;)V
+	public final fun bindBanner (Ljava/lang/Object;)V
+	public final fun destroy ()V
+	public final fun getBannerSize ()Lio/bidapp/kmp/BIDAdFormat;
+	public final fun refresh ()V
+	public final fun setBannerViewDelegate (Lio/bidapp/kmp/BIDBannerShow;)V
+	public final fun startAutorefresh (D)V
+	public final fun stopAutorefresh ()V
+}
+
+public abstract interface class io/bidapp/kmp/BIDBannerShow {
+	public abstract fun allNetworksFailedToDisplay (Ljava/lang/String;)V
+	public abstract fun click (Lio/bidapp/kmp/BIDAdInfo;Lio/bidapp/kmp/BIDBanner;)V
+	public abstract fun display (Lio/bidapp/kmp/BIDAdInfo;Lio/bidapp/kmp/BIDBanner;)V
+	public abstract fun failToDisplay (Lio/bidapp/kmp/BIDAdInfo;Lio/bidapp/kmp/BIDBanner;Ljava/lang/String;)V
+	public abstract fun load (Lio/bidapp/kmp/BIDAdInfo;Lio/bidapp/kmp/BIDBanner;)V
+}
+
+public final class io/bidapp/kmp/BIDConfiguration {
+	public fun <init> ()V
+	public final fun enableBannerAds ()V
+	public final fun enableInterstitialAds ()V
+	public final fun enableLoggingAds ()V
+	public final fun enableRewardedAds ()V
+	public final fun enableTestModeAds ()V
+	public final fun isBannerEnable ()Ljava/lang/Boolean;
+	public final fun isInterstitialEnable ()Ljava/lang/Boolean;
+	public final fun isLoggingEnable ()Ljava/lang/Boolean;
+	public final fun isRewardedEnable ()Ljava/lang/Boolean;
+	public final fun isTestModeEnable ()Ljava/lang/Boolean;
+	public final fun setAdTag (Ljava/lang/String;Lio/bidapp/kmp/BIDNetworkId;Lio/bidapp/kmp/BIDAdFormat;D)V
+	public final fun setBannerEnable (Ljava/lang/Boolean;)V
+	public final fun setInterstitialEnable (Ljava/lang/Boolean;)V
+	public final fun setLoggingEnable (Ljava/lang/Boolean;)V
+	public final fun setRewardedEnable (Ljava/lang/Boolean;)V
+	public final fun setSDKKey (Ljava/lang/String;Lio/bidapp/kmp/BIDNetworkId;Ljava/lang/String;)V
+	public final fun setTestModeEnable (Ljava/lang/Boolean;)V
+}
+
+public abstract interface class io/bidapp/kmp/BIDFullLoad {
+	public abstract fun failLoad (Lio/bidapp/kmp/BIDAdInfo;Ljava/lang/String;)V
+	public abstract fun load (Lio/bidapp/kmp/BIDAdInfo;)V
+}
+
+public abstract interface class io/bidapp/kmp/BIDFullShow {
+	public abstract fun allNetworksFailedToDisplay (Ljava/lang/String;)V
+	public abstract fun click (Lio/bidapp/kmp/BIDAdInfo;)V
+	public abstract fun display (Lio/bidapp/kmp/BIDAdInfo;)V
+	public abstract fun failToDisplay (Lio/bidapp/kmp/BIDAdInfo;Ljava/lang/String;)V
+	public abstract fun hide (Lio/bidapp/kmp/BIDAdInfo;)V
+	public abstract fun reward ()V
+}
+
+public final class io/bidapp/kmp/BIDInterstitial {
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun destroy ()V
+	public final fun isInterstitialReady ()Z
+	public final fun load ()V
+	public final fun setAutoLoad (Z)V
+	public final fun setLoadDelegate (Lio/bidapp/kmp/BIDFullLoad;)V
+	public final fun showInterstitial (Ljava/lang/Object;Lio/bidapp/kmp/BIDFullShow;)V
+}
+
+public final class io/bidapp/kmp/BIDNetworkId {
+	public static final field Companion Lio/bidapp/kmp/BIDNetworkId$Companion;
+	public fun <init> ()V
+}
+
+public final class io/bidapp/kmp/BIDNetworkId$Companion {
+	public final fun getAdmob ()Lio/bidapp/kmp/BIDNetworkId;
+	public final fun getApplovin ()Lio/bidapp/kmp/BIDNetworkId;
+	public final fun getApplovinMax ()Lio/bidapp/kmp/BIDNetworkId;
+	public final fun getChartboost ()Lio/bidapp/kmp/BIDNetworkId;
+	public final fun getDigitalTurbine ()Lio/bidapp/kmp/BIDNetworkId;
+	public final fun getFacebook ()Lio/bidapp/kmp/BIDNetworkId;
+	public final fun getLiftoff ()Lio/bidapp/kmp/BIDNetworkId;
+	public final fun getMyTarget ()Lio/bidapp/kmp/BIDNetworkId;
+	public final fun getStartIo ()Lio/bidapp/kmp/BIDNetworkId;
+	public final fun getUnity ()Lio/bidapp/kmp/BIDNetworkId;
+	public final fun getYandex ()Lio/bidapp/kmp/BIDNetworkId;
+}
+
+public final class io/bidapp/kmp/BIDRewarded {
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun destroy ()V
+	public final fun isInterstitialReady ()Z
+	public final fun load ()V
+	public final fun setAutoLoad (Z)V
+	public final fun setLoadDelegate (Lio/bidapp/kmp/BIDFullLoad;)V
+	public final fun showRewarded (Ljava/lang/Object;Lio/bidapp/kmp/BIDFullShow;)V
+}
+
+public final class io/bidapp/kmp/BidConsent {
+	public static final field INSTANCE Lio/bidapp/kmp/BidConsent;
+	public final fun setCCPA (Z)V
+	public final fun setCOPPA (Z)V
+	public final fun setGDPR (Z)V
+}
+
+public final class io/bidapp/kmp/BidappAds {
+	public static final field INSTANCE Lio/bidapp/kmp/BidappAds;
+	public final fun start (Ljava/lang/String;Lio/bidapp/kmp/BIDConfiguration;Ljava/lang/Object;)V
+}
+
+public final class io/bidapp/kmp/Consent_androidKt {
+	public static final fun setCCPA (Z)V
+	public static final fun setCOPPA (Z)V
+	public static final fun setGDPR (Z)V
+}
+
+public final class io/bidapp/kmp/CreateBidAdInfo_androidKt {
+	public static final fun createBidAdInfo (Lio/bidapp/sdk/AdInfo;)Lio/bidapp/kmp/BIDAdInfo;
+}
+
+public final class io/bidapp/kmp/Log_androidKt {
+	public static final fun log (Ljava/lang/String;)V
+}
+
+public final class io/bidapp/kmp/NetworkAdTag {
+	public fun <init> (Ljava/lang/String;Lio/bidapp/kmp/BIDNetworkId;Lio/bidapp/kmp/BIDAdFormat;D)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lio/bidapp/kmp/BIDNetworkId;
+	public final fun component3 ()Lio/bidapp/kmp/BIDAdFormat;
+	public final fun component4 ()D
+	public final fun copy (Ljava/lang/String;Lio/bidapp/kmp/BIDNetworkId;Lio/bidapp/kmp/BIDAdFormat;D)Lio/bidapp/kmp/NetworkAdTag;
+	public static synthetic fun copy$default (Lio/bidapp/kmp/NetworkAdTag;Ljava/lang/String;Lio/bidapp/kmp/BIDNetworkId;Lio/bidapp/kmp/BIDAdFormat;DILjava/lang/Object;)Lio/bidapp/kmp/NetworkAdTag;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAdFormat ()Lio/bidapp/kmp/BIDAdFormat;
+	public final fun getAdTag ()Ljava/lang/String;
+	public final fun getEcpm ()D
+	public final fun getNetworkId ()Lio/bidapp/kmp/BIDNetworkId;
+	public fun hashCode ()I
+	public final fun setAdFormat (Lio/bidapp/kmp/BIDAdFormat;)V
+	public final fun setAdTag (Ljava/lang/String;)V
+	public final fun setEcpm (D)V
+	public final fun setNetworkId (Lio/bidapp/kmp/BIDNetworkId;)V
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/bidapp/kmp/NetworkSDKKey {
+	public fun <init> (Ljava/lang/String;Lio/bidapp/kmp/BIDNetworkId;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lio/bidapp/kmp/BIDNetworkId;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Lio/bidapp/kmp/BIDNetworkId;Ljava/lang/String;)Lio/bidapp/kmp/NetworkSDKKey;
+	public static synthetic fun copy$default (Lio/bidapp/kmp/NetworkSDKKey;Ljava/lang/String;Lio/bidapp/kmp/BIDNetworkId;Ljava/lang/String;ILjava/lang/Object;)Lio/bidapp/kmp/NetworkSDKKey;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getNetworkId ()Lio/bidapp/kmp/BIDNetworkId;
+	public final fun getSdkKey ()Ljava/lang/String;
+	public final fun getSecondKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun setNetworkId (Lio/bidapp/kmp/BIDNetworkId;)V
+	public final fun setSdkKey (Ljava/lang/String;)V
+	public final fun setSecondKey (Ljava/lang/String;)V
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/bidapp/kmp/Platform_androidKt {
+	public static final fun getPlatformName ()Ljava/lang/String;
+}
+

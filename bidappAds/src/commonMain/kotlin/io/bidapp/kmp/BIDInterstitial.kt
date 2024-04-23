@@ -1,13 +1,13 @@
 package io.bidapp.kmp
 
 
-expect class BIDInterstitial(activity : Any?){
-    fun showInterstitial(activity: Any?, bidShowDelegate : BIDFullShow?)
-    fun setLoadDelegate(bidLoadDelegate: BIDFullLoad?)
-    fun setAutoLoad(isAutoLoad: Boolean)
-    fun isInterstitialReady(): Boolean
-    fun load()
-    fun destroy()
+public expect class BIDInterstitial(activity : Any?){
+    public fun showInterstitial(activity: Any?, bidShowDelegate : BIDFullShow?)
+    public fun setLoadDelegate(bidLoadDelegate: BIDFullLoad?)
+    public fun setAutoLoad(isAutoLoad: Boolean)
+    public fun isInterstitialReady(): Boolean
+    public fun load()
+    public fun destroy()
 }
 
 

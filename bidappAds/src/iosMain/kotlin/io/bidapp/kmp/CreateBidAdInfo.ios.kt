@@ -7,7 +7,7 @@ import cocoapods.bidapp.waterfallId
 import kotlinx.cinterop.ExperimentalForeignApi
 
 @OptIn(ExperimentalForeignApi::class)
-fun createBidAdInfo(adInfo: cocoapods.bidapp.BIDAdInfo): BIDAdInfo {
+public fun createBidAdInfo(adInfo: cocoapods.bidapp.BIDAdInfo): BIDAdInfo {
     return BIDAdInfo(
         adInfo.format.name,
         null,

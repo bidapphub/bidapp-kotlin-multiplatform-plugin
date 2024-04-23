@@ -1,3 +1,3 @@
 package io.bidapp.kmp
 
-expect fun getPlatformName() : String
+public expect fun getPlatformName() : String

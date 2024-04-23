@@ -3,7 +3,7 @@ import cocoapods.bidapp.*
 import kotlinx.cinterop.ExperimentalForeignApi
 
 
-actual object BidappAds {
+public actual object BidappAds {
     private val ApplovinId = 1
     private val ApplovinMaxId = 2
     private val UnityId = 3
@@ -15,7 +15,7 @@ actual object BidappAds {
     private val FacebookId = 10
 
     @OptIn(ExperimentalForeignApi::class)
-    actual fun start(
+    public actual fun start(
         pubId: String,
         bidConfiguration: BIDConfiguration,
         applicationContext: Any?

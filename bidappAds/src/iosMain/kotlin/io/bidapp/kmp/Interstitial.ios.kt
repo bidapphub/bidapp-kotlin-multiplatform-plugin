@@ -13,13 +13,13 @@ import platform.darwin.NSObject
 
 
 @OptIn(ExperimentalForeignApi::class)
-actual class BIDInterstitial actual constructor(activity : Any?)  {
+public actual class BIDInterstitial actual constructor(activity : Any?)  {
     private var interstitial : BIDInterstitial? = BIDInterstitial()
     private var interstitialShowDelegate : BIDInterstitialDelegateProtocol? = null
     private var interstitialLoadDelegate : BIDFullscreenLoadDelegateProtocol? = null
 
 
-    actual fun showInterstitial(
+    public actual fun showInterstitial(
         activity: Any?,
         bidShowDelegate: BIDFullShow?
     ) {
@@ -52,7 +52,7 @@ actual class BIDInterstitial actual constructor(activity : Any?)  {
         interstitial?.showWithDelegate(interstitialShowDelegate as BIDInterstitialDelegateProtocol)
     }
 
-    actual fun setLoadDelegate(bidLoadDelegate: BIDFullLoad?) {
+    public actual fun setLoadDelegate(bidLoadDelegate: BIDFullLoad?) {
         interstitialLoadDelegate = object : BIDFullscreenLoadDelegateProtocol, NSObject(){
             override fun didFailToLoadAd(adInfo: BIDAdInfo, error: NSError) {
                 bidLoadDelegate?.failLoad(createBidAdInfo(adInfo), error.localizedDescription())
@@ -65,19 +65,19 @@ actual class BIDInterstitial actual constructor(activity : Any?)  {
         interstitial?.setLoadDelegate(interstitialLoadDelegate)
     }
 
-    actual fun setAutoLoad(isAutoLoad: Boolean) {
+    public actual fun setAutoLoad(isAutoLoad: Boolean) {
     interstitial?.autoload = isAutoLoad
     }
 
-    actual fun isInterstitialReady(): Boolean {
+    public actual fun isInterstitialReady(): Boolean {
         return interstitial?.isAdReady() ?: false
     }
 
-    actual fun load() {
+    public actual fun load() {
     interstitial?.load()
     }
 
-    actual fun destroy() {
+    public actual fun destroy() {
         interstitial = null
         interstitialLoadDelegate = null
         interstitialShowDelegate = null

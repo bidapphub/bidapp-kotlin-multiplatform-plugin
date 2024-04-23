@@ -10,12 +10,12 @@ import io.bidapp.sdk.Rewarded
 
 
 
-actual class BIDRewarded actual constructor(activity : Any?){
+public actual class BIDRewarded actual constructor(activity : Any?){
     private var rewarded = createReward(activity)
     private var loadDelegate : BIDFullscreenLoadDelegate? = null
     private var showDelegate : BIDRewardedDelegate? = null
 
-    actual fun showRewarded(applicationActivity: Any?, bidShowDelegate : BIDFullShow?) {
+    public actual fun showRewarded(applicationActivity: Any?, bidShowDelegate : BIDFullShow?) {
         if ((applicationActivity as? Activity) == null || rewarded == null) return
         if (bidShowDelegate != null) {
             showDelegate = object : BIDRewardedDelegate {
@@ -49,7 +49,7 @@ actual class BIDRewarded actual constructor(activity : Any?){
         else rewarded?.showWithDelegate(applicationActivity, null)
     }
 
-    actual fun setLoadDelegate(bidLoadDelegate: BIDFullLoad?) {
+    public actual fun setLoadDelegate(bidLoadDelegate: BIDFullLoad?) {
         if (bidLoadDelegate != null) {
             loadDelegate = object : BIDFullscreenLoadDelegate {
                 override fun didFailToLoad(adInfo: AdInfo?, error: Error) {
@@ -65,18 +65,18 @@ actual class BIDRewarded actual constructor(activity : Any?){
         }
     }
 
-    actual fun setAutoLoad(isAutoLoad: Boolean) {
+    public actual fun setAutoLoad(isAutoLoad: Boolean) {
         rewarded?.setAutoload(isAutoLoad)
     }
 
-    actual fun isInterstitialReady(): Boolean {
+    public actual fun isInterstitialReady(): Boolean {
         return rewarded?.isAdReady() ?: false
     }
 
-    actual fun load() {
+    public actual fun load() {
         rewarded?.load()
     }
-    actual fun destroy(){
+    public actual fun destroy(){
         rewarded?.destroy()
         rewarded = null
     }

@@ -9,12 +9,12 @@ import io.bidapp.sdk.BIDInterstitialDelegate
 import io.bidapp.sdk.Interstitial
 
 
-actual class BIDInterstitial actual constructor(activity : Any?){
+public actual class BIDInterstitial actual constructor(activity : Any?){
     private var interstitial : Interstitial? = createInterstitial(activity)
     private var loadDelegate : BIDFullscreenLoadDelegate? = null
     private var showDelegate : BIDInterstitialDelegate? = null
 
-    actual fun showInterstitial(activity: Any?, bidShowDelegate : BIDFullShow?) {
+    public actual fun showInterstitial(activity: Any?, bidShowDelegate : BIDFullShow?) {
         if ((activity as? Activity) == null || interstitial == null) return
         if (bidShowDelegate!= null) {
             showDelegate = object : BIDInterstitialDelegate{
@@ -44,7 +44,7 @@ actual class BIDInterstitial actual constructor(activity : Any?){
         else interstitial?.showWithDelegate(activity, null)
     }
 
-    actual fun setLoadDelegate(bidLoadDelegate: BIDFullLoad?) {
+    public actual fun setLoadDelegate(bidLoadDelegate: BIDFullLoad?) {
         if (bidLoadDelegate != null) {
             loadDelegate = object : BIDFullscreenLoadDelegate {
                 override fun didFailToLoad(adInfo: AdInfo?, error: Error) {
@@ -60,18 +60,18 @@ actual class BIDInterstitial actual constructor(activity : Any?){
         }
     }
 
-    actual fun setAutoLoad(isAutoLoad: Boolean) {
+    public actual fun setAutoLoad(isAutoLoad: Boolean) {
         interstitial?.setAutoload(isAutoLoad)
     }
 
-    actual fun isInterstitialReady(): Boolean {
+    public actual fun isInterstitialReady(): Boolean {
         return interstitial?.isAdReady() ?: false
     }
 
-    actual fun load() {
+    public actual fun load() {
         interstitial?.load()
     }
-    actual fun destroy(){
+    public actual fun destroy(){
         interstitial?.destroy()
         interstitial = null
         loadDelegate = null

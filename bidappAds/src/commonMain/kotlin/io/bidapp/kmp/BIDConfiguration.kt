@@ -1,31 +1,31 @@
 package io.bidapp.kmp
 
-class BIDConfiguration {
- var isInterstitialEnable : Boolean? = null
- var isRewardedEnable : Boolean? = null
- var isBannerEnable : Boolean? = null
- var isLoggingEnable : Boolean? = null
- var isTestModeEnable : Boolean? = null
+public class BIDConfiguration {
+ public var isInterstitialEnable : Boolean? = null
+ public var isRewardedEnable : Boolean? = null
+ public var isBannerEnable : Boolean? = null
+ public var isLoggingEnable : Boolean? = null
+ public var isTestModeEnable : Boolean? = null
  internal var arrayNetworkSDKKey : ArrayList<NetworkSDKKey>? = null
  internal var arrayNetworkAdTag : ArrayList<NetworkAdTag>? = null
 
- fun enableInterstitialAds(){
+ public fun enableInterstitialAds(){
   isInterstitialEnable = true
  }
- fun enableRewardedAds(){
+ public fun enableRewardedAds(){
   isRewardedEnable = true
  }
- fun enableBannerAds(){
+ public fun enableBannerAds(){
   isBannerEnable = true
  }
- fun enableLoggingAds(){
+ public fun enableLoggingAds(){
   isLoggingEnable = true
  }
- fun enableTestModeAds(){
+ public fun enableTestModeAds(){
   isTestModeEnable = true
  }
 
- fun setSDKKey(sdkKey: String, networkId: BIDNetworkId, secondKey: String?){
+ public fun setSDKKey(sdkKey: String, networkId: BIDNetworkId, secondKey: String?){
     if (arrayNetworkSDKKey == null) {
      arrayNetworkSDKKey = arrayListOf()
      arrayNetworkSDKKey!!.add(NetworkSDKKey(sdkKey, networkId, secondKey))
@@ -42,7 +42,7 @@ class BIDConfiguration {
  }
 
 
- fun setAdTag(adTag : String, networkId: BIDNetworkId, adFormat: BIDAdFormat, epcm: Double){
+ public fun setAdTag(adTag : String, networkId: BIDNetworkId, adFormat: BIDAdFormat, epcm: Double){
   if (arrayNetworkAdTag == null)
    arrayNetworkAdTag = arrayListOf()
    arrayNetworkAdTag!!.add(NetworkAdTag(adTag, networkId, adFormat, epcm))
@@ -53,7 +53,7 @@ class BIDConfiguration {
 
 
 
-data class NetworkSDKKey(var sdkKey : String, var networkId : BIDNetworkId, var secondKey : String?)
-data class NetworkAdTag(var adTag : String, var networkId : BIDNetworkId, var adFormat: BIDAdFormat, var ecpm : Double)
+public data class NetworkSDKKey(var sdkKey : String, var networkId : BIDNetworkId, var secondKey : String?)
+public data class NetworkAdTag(var adTag : String, var networkId : BIDNetworkId, var adFormat: BIDAdFormat, var ecpm : Double)
 
 

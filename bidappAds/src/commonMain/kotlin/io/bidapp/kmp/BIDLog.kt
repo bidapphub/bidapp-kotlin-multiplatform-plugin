@@ -4,4 +4,4 @@ internal object BIDLog {
     var logEnabled = false
 }
 
-expect fun log(message:String)
+public expect fun log(message:String)

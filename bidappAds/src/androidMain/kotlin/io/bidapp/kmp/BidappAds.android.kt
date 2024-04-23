@@ -13,7 +13,7 @@ import io.bidapp.sdk.BIDNetworkId
 import io.bidapp.sdk.BidappAds
 
 
-actual object BidappAds {
+public actual object BidappAds {
     private val ApplovinId = 1
     private val ApplovinMaxId = 2
     private val UnityId = 3
@@ -25,7 +25,7 @@ actual object BidappAds {
     private val FacebookId = 10
     private val MyTargetId = 11
     private val YandexId = 12
-    actual fun start(
+    public actual fun start(
         pubId: String,
         bidConfiguration: io.bidapp.kmp.BIDConfiguration,
         applicationContext: Any?

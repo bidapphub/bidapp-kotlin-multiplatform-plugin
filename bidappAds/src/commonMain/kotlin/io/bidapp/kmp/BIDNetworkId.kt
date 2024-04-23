@@ -3,7 +3,7 @@ package io.bidapp.kmp
 
 
 
-class BIDNetworkId {
+public class BIDNetworkId {
     private var currentNetworkId : Int? = null
     internal fun setNetwork(networkId : Int) : BIDNetworkId {
         this.currentNetworkId = networkId
@@ -12,7 +12,7 @@ class BIDNetworkId {
     internal fun getNetwork() : Int {
         return currentNetworkId ?: 0
     }
-    companion object {
+    public companion object {
        private const val ApplovinId = 1
        private const val ApplovinMaxId = 2
        private const val UnityId = 3
@@ -24,16 +24,16 @@ class BIDNetworkId {
        private const val FacebookId = 10
        private const val MyTargetId = 11
        private const val YandexId = 12
-       val Applovin = BIDNetworkId().setNetwork(ApplovinId)
-       val ApplovinMax = BIDNetworkId().setNetwork(ApplovinMaxId)
-       val Unity = BIDNetworkId().setNetwork(UnityId)
-       val Liftoff = BIDNetworkId().setNetwork(LiftoffId)
-       val Chartboost = BIDNetworkId().setNetwork(ChartboostId)
-       val Admob = BIDNetworkId().setNetwork(AdmobId)
-       val StartIo = BIDNetworkId().setNetwork(StartIoId)
-       val DigitalTurbine = BIDNetworkId().setNetwork(DigitalTurbineId)
-       val Facebook = BIDNetworkId().setNetwork(FacebookId)
-       val MyTarget = BIDNetworkId().setNetwork(MyTargetId)
-       val Yandex = BIDNetworkId().setNetwork(YandexId)
+       public val Applovin: BIDNetworkId = BIDNetworkId().setNetwork(ApplovinId)
+       public val ApplovinMax: BIDNetworkId = BIDNetworkId().setNetwork(ApplovinMaxId)
+       public val Unity: BIDNetworkId = BIDNetworkId().setNetwork(UnityId)
+       public val Liftoff: BIDNetworkId = BIDNetworkId().setNetwork(LiftoffId)
+       public val Chartboost: BIDNetworkId = BIDNetworkId().setNetwork(ChartboostId)
+       public val Admob: BIDNetworkId = BIDNetworkId().setNetwork(AdmobId)
+       public val StartIo: BIDNetworkId = BIDNetworkId().setNetwork(StartIoId)
+       public val DigitalTurbine: BIDNetworkId = BIDNetworkId().setNetwork(DigitalTurbineId)
+       public val Facebook: BIDNetworkId = BIDNetworkId().setNetwork(FacebookId)
+       public val MyTarget: BIDNetworkId = BIDNetworkId().setNetwork(MyTargetId)
+       public val Yandex: BIDNetworkId = BIDNetworkId().setNetwork(YandexId)
     }
 }

@@ -1,14 +1,14 @@
 package io.bidapp.kmp
 
 
-expect class BIDBanner(applicationActivity: Any?, bidBannerSize: BIDAdFormat){
-    fun bindBanner(container : Any?)
-    fun getBannerSize() : BIDAdFormat?
-    fun setBannerViewDelegate(bidBannerShow: BIDBannerShow)
-    fun refresh()
-    fun startAutorefresh(interval: Double)
-    fun stopAutorefresh()
-    fun destroy()
+public expect class BIDBanner(applicationActivity: Any?, bidBannerSize: BIDAdFormat){
+    public fun bindBanner(container : Any?)
+    public fun getBannerSize() : BIDAdFormat?
+    public fun setBannerViewDelegate(bidBannerShow: BIDBannerShow)
+    public fun refresh()
+    public fun startAutorefresh(interval: Double)
+    public fun stopAutorefresh()
+    public fun destroy()
 }
 
 
