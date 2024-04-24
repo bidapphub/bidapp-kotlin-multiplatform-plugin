@@ -19,6 +19,27 @@ Bidapp ads kotlin multiplatform demo for Android and IOS
 
 Complete integration instructions and usage guide for the Bidapp Ads Kotlin Multiplatform library can be found [here](https://docs.bidapp.io).
 
+# Integrate Bidapp KMP library
+
+To use Bidapp multiplatform, implement the library in the build.gradle.kts file within the commonMain section:
+
+```groovy
+  sourceSets {
+        commonMain.dependencies {
+            implementation("io.bidapp:kmp:+")
+         }
+    }
+```
+
+On iOS, you also have to add the Bidapp pod to your Podfile:
+
+```kotlin
+target 'iosApp' do
+    pod 'bidapp/SDK'
+end 
+```
+For detailed usage of the library, please follow the link provided in the documentation.
+
 # Demo APP
 <div align="center">
   <img alt="Logo" src="https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin/assets/148830475/823f5ced-e486-478d-9263-b00d97cf1519" width="350"/>
