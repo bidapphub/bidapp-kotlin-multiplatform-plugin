@@ -1,12 +1,6 @@
 package io.bidapp.kmp
 
 import android.content.Context
-import io.bidapp.kmp.BIDAdFormat
-import io.bidapp.kmp.BIDLog
-import io.bidapp.kmp.Banner
-import io.bidapp.kmp.Interstitial
-import io.bidapp.kmp.Mrec
-import io.bidapp.kmp.Rewarded
 import io.bidapp.sdk.AdFormat
 import io.bidapp.sdk.BIDConfiguration
 import io.bidapp.sdk.BIDNetworkId
@@ -32,9 +26,6 @@ public actual object BidappAds {
     ) {
 
         val config = BIDConfiguration()
-        if (bidConfiguration.isInterstitialEnable == true) config.enableInterstitialAds()
-        if (bidConfiguration.isRewardedEnable == true) config.enableRewardedAds()
-        if (bidConfiguration.isBannerEnable == true) config.enableBannerAds()
         if (bidConfiguration.isLoggingEnable == true) {
             BIDLog.logEnabled = true
             config.enableLogging()
@@ -89,10 +80,11 @@ public actual object BidappAds {
 
     private fun getAdFormat(adFormat: BIDAdFormat): AdFormat? {
         return when (adFormat.getAdFormat()) {
-            Interstitial -> AdFormat.interstitial
-            Rewarded -> AdFormat.rewarded
-            Banner -> AdFormat.banner_320x50
-            Mrec -> AdFormat.banner_300x250
+            INTERSTITIAL -> AdFormat.interstitial
+            REWARDED -> AdFormat.rewarded
+            BANNER -> AdFormat.banner_320x50
+            MREC -> AdFormat.banner_300x250
+            LEADERBOARD -> AdFormat.banner_728x90
             else -> return null
         }
     }

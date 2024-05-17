@@ -24,4 +24,4 @@ fun Banner(bidappAdsData : BIDAppAdsData, view : MutableState<Any?>){
 }
 
 @Composable
-expect fun ShowBanner(banner: io.bidapp.kmp.BIDBanner?, onsuccess: (view: Any) -> Unit)
+expect fun ShowBanner(banner: BIDBanner?, onsuccess: (view: Any) -> Unit)

@@ -1,8 +1,6 @@
 package io.bidapp.kmp
 
 import android.app.Activity
-import io.bidapp.kmp.BIDFullLoad
-import io.bidapp.kmp.BIDFullShow
 import io.bidapp.sdk.AdInfo
 import io.bidapp.sdk.BIDFullscreenLoadDelegate
 import io.bidapp.sdk.BIDRewardedDelegate

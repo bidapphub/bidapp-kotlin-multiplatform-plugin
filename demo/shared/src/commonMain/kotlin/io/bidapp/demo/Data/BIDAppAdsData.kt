@@ -9,12 +9,11 @@ import io.bidapp.kmp.BIDFullLoad
 import io.bidapp.kmp.BIDFullShow
 import io.bidapp.kmp.BIDInterstitial
 import io.bidapp.kmp.BIDRewarded
-import io.bidapp.kmp.getPlatformName
 
 class BIDAppAdsData {
-    private var interstitial: io.bidapp.kmp.BIDInterstitial? = null
-    private var rewarded: io.bidapp.kmp.BIDRewarded? = null
-    private var banner: io.bidapp.kmp.BIDBanner? = null
+    private var interstitial: BIDInterstitial? = null
+    private var rewarded: BIDRewarded? = null
+    private var banner: BIDBanner? = null
     internal var adsEvents : AdsEvents? = null
     private var fullInterstitialLoad : BIDFullLoad? = object : BIDFullLoad {
         override fun load(info: BIDAdInfo) {
@@ -39,20 +38,20 @@ class BIDAppAdsData {
 
     }
     private var bannerShow : BIDBannerShow? = object : BIDBannerShow {
-        override fun display(info: BIDAdInfo, bidBannerView: io.bidapp.kmp.BIDBanner) {
+        override fun display(info: BIDAdInfo, bidBannerView: BIDBanner) {
             adsEvents?.displayBanner()
             log("Display - adtag: ${info.adTag}")
         }
 
-        override fun failToDisplay(info: BIDAdInfo, bidBannerView: io.bidapp.kmp.BIDBanner, error: String) {
+        override fun failToDisplay(info: BIDAdInfo, bidBannerView: BIDBanner, error: String) {
             log("Fail to displat - adtag: ${info.adTag} Error:$error")
         }
 
-        override fun click(info: BIDAdInfo, bidBannerView: io.bidapp.kmp.BIDBanner) {
+        override fun click(info: BIDAdInfo, bidBannerView: BIDBanner) {
             log("Click - adtag: ${info.adTag}")
         }
 
-        override fun load(info: BIDAdInfo, bidBannerView: io.bidapp.kmp.BIDBanner) {
+        override fun load(info: BIDAdInfo, bidBannerView: BIDBanner) {
             adsEvents?.loadBanner(info.networkId)
             log("Load - adtag: ${info.adTag}")
         }
@@ -90,15 +89,15 @@ class BIDAppAdsData {
     }
 
     fun initialization(activity: Any?) {
-        interstitial = io.bidapp.kmp.BIDInterstitial(activity)
+        interstitial = BIDInterstitial(activity)
         interstitial?.setLoadDelegate(fullInterstitialLoad)
-        rewarded = io.bidapp.kmp.BIDRewarded(activity)
+        rewarded = BIDRewarded(activity)
         rewarded?.setLoadDelegate(fullRewardedLoad)
         createBanner(activity)
     }
 
     internal fun createBanner (activity : Any?) {
-        banner = io.bidapp.kmp.BIDBanner(activity, BIDAdFormat.banner_320x50)
+        banner = BIDBanner(activity, BIDAdFormat.banner_320x50)
         bannerShow?.let { banner?.setBannerViewDelegate(it) }
     }
 
@@ -107,15 +106,15 @@ class BIDAppAdsData {
         banner = null
     }
 
-    fun getInterstitial() : io.bidapp.kmp.BIDInterstitial?{
+    fun getInterstitial() : BIDInterstitial?{
         return interstitial
     }
 
-    fun getRewarded() : io.bidapp.kmp.BIDRewarded?{
+    fun getRewarded() : BIDRewarded?{
         return rewarded
     }
 
-    fun getBanner() : io.bidapp.kmp.BIDBanner?{
+    fun getBanner() : BIDBanner?{
         return banner
     }
 

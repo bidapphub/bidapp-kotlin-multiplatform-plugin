@@ -3,8 +3,6 @@ package io.bidapp.kmp
 import android.app.Activity
 import android.widget.FrameLayout
 import androidx.constraintlayout.widget.ConstraintLayout
-import io.bidapp.kmp.BIDAdFormat
-import io.bidapp.kmp.BIDBannerShow
 import io.bidapp.sdk.AdFormat
 import io.bidapp.sdk.AdInfo
 import io.bidapp.sdk.BIDBannerViewDelegate
@@ -74,14 +72,21 @@ public actual class BIDBanner actual constructor(applicationActivity: Any?, bidB
 
     private fun createBanner(applicationActivity: Any?, bidBannerSize: BIDAdFormat): BannerView? {
         if ((applicationActivity as? Activity) == null) return null
-        return if (bidBannerSize.isBanner_300x250()) BannerView(applicationActivity).banner(
-            AdFormat.banner_300x250
-        ) else if (bidBannerSize.isBanner_320x50()) BannerView(applicationActivity).banner(
-            AdFormat.banner_320x50
-        )
-        else {
-            log("Error - incorrect banner format")
-            null
+        return when(bidBannerSize.getAdFormat()){
+            BANNER -> {
+                BannerView(applicationActivity).banner(AdFormat.banner_320x50)
+            }
+            MREC -> {
+                BannerView(applicationActivity).banner(AdFormat.banner_300x250)
+            }
+            LEADERBOARD -> {
+                BannerView(applicationActivity).banner(AdFormat.banner_728x90)
+            }
+            else -> {
+                log("Error - incorrect banner format")
+                null
+            }
+
         }
     }
 

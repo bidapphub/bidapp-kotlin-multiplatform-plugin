@@ -10,8 +10,6 @@ import platform.UIKit.UIViewController
 import platform.darwin.NSObject
 
 
-
-
 @OptIn(ExperimentalForeignApi::class)
 public actual class BIDRewarded actual constructor(activity : Any?){
     private var rewarded : BIDRewarded? = BIDRewarded()

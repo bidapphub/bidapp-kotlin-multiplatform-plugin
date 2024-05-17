@@ -12,15 +12,30 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.interop.UIKitView
 import androidx.compose.ui.unit.dp
 import io.bidapp.kmp.BIDBanner
+import io.bidapp.kmp.log
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.UIKit.UIView
 
 
 @OptIn(ExperimentalForeignApi::class)
 @Composable
-actual fun ShowBanner(banner : io.bidapp.kmp.BIDBanner?, onsuccess:(view : Any)->Unit)  {
-    val width = remember {  mutableIntStateOf(if (banner?.getBannerSize()?.isBanner_320x50() == true) 320 else 300) }
-    val height = remember {  mutableIntStateOf(if (banner?.getBannerSize()?.isBanner_320x50() == true) 50 else 250) }
+actual fun ShowBanner(banner : BIDBanner?, onsuccess:(view : Any)->Unit)  {
+    val width = remember {  mutableIntStateOf(
+        if (banner?.getBannerSize()?.isBanner_320x50() == true) 320
+        else if (banner?.getBannerSize()?.isBanner_300x250() == true) 300
+        else if (banner?.getBannerSize()?.isBanner_728x90() == true) 728
+        else {
+            log("Incorrect banner format")
+            0
+        }) }
+    val height = remember { mutableIntStateOf(
+        if (banner?.getBannerSize()?.isBanner_320x50() == true) 50
+        else if (banner?.getBannerSize()?.isBanner_300x250() == true) 250
+        else if (banner?.getBannerSize()?.isBanner_728x90() == true) 90
+        else {
+            log("Incorrect banner format")
+            0
+        }) }
     Box(
         modifier = Modifier
             .width(width.intValue.dp)

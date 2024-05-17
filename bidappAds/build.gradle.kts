@@ -27,7 +27,9 @@ kotlin {
         version = "1.0"
         ios.deploymentTarget = "12.0"
         podfile = project.file("../demo/iosApp/Podfile")
-        pod("bidapp/SDK")
+        pod("bidapp/SDK") {
+            extraOpts += listOf("-compiler-option", "-fmodules")
+        }
         framework {
             baseName = "io.bidapp.kmp"
             isStatic = true
@@ -37,7 +39,7 @@ kotlin {
     sourceSets {
         androidMain.dependencies {
             implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-            implementation("io.bidapp:sdk:1.0.8")
+            implementation("io.bidapp:sdk:1.1.0")
         }
         commonMain.dependencies {
         }

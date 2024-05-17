@@ -1,23 +1,11 @@
 package io.bidapp.kmp
 
 public class BIDConfiguration {
- public var isInterstitialEnable : Boolean? = null
- public var isRewardedEnable : Boolean? = null
- public var isBannerEnable : Boolean? = null
  public var isLoggingEnable : Boolean? = null
  public var isTestModeEnable : Boolean? = null
  internal var arrayNetworkSDKKey : ArrayList<NetworkSDKKey>? = null
  internal var arrayNetworkAdTag : ArrayList<NetworkAdTag>? = null
 
- public fun enableInterstitialAds(){
-  isInterstitialEnable = true
- }
- public fun enableRewardedAds(){
-  isRewardedEnable = true
- }
- public fun enableBannerAds(){
-  isBannerEnable = true
- }
  public fun enableLoggingAds(){
   isLoggingEnable = true
  }

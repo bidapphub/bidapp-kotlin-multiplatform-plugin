@@ -21,9 +21,6 @@ public actual object BidappAds {
         applicationContext: Any?
     ) {
         val config =  cocoapods.bidapp.BIDConfiguration()
-        if (bidConfiguration.isInterstitialEnable == true) config.enableInterstitialAds()
-        if (bidConfiguration.isRewardedEnable == true) config.enableRewardedAds()
-        if (bidConfiguration.isBannerEnable == true) config.enableBannerAds()
         if (bidConfiguration.isLoggingEnable == true) {
             BIDLog.logEnabled
             config.enableLogging()
@@ -74,10 +71,11 @@ public actual object BidappAds {
     @OptIn(ExperimentalForeignApi::class)
     private fun getAdFormat(adFormat: BIDAdFormat): cocoapods.bidapp.BIDAdFormat? {
         return when (adFormat.getAdFormat()) {
-            Interstitial -> cocoapods.bidapp.BIDAdFormat.interstitial as cocoapods.bidapp.BIDAdFormat
-            Rewarded -> cocoapods.bidapp.BIDAdFormat.rewarded as cocoapods.bidapp.BIDAdFormat
-            Banner -> cocoapods.bidapp.BIDAdFormat.banner_320x50 as cocoapods.bidapp.BIDAdFormat
-            Mrec -> cocoapods.bidapp.BIDAdFormat.banner_300x250 as cocoapods.bidapp.BIDAdFormat
+            INTERSTITIAL -> cocoapods.bidapp.BIDAdFormat.interstitial as cocoapods.bidapp.BIDAdFormat
+            REWARDED -> cocoapods.bidapp.BIDAdFormat.rewarded as cocoapods.bidapp.BIDAdFormat
+            BANNER -> cocoapods.bidapp.BIDAdFormat.banner_320x50 as cocoapods.bidapp.BIDAdFormat
+            MREC -> cocoapods.bidapp.BIDAdFormat.banner_300x250 as cocoapods.bidapp.BIDAdFormat
+            LEADERBOARD -> cocoapods.bidapp.BIDAdFormat.banner_728x90 as cocoapods.bidapp.BIDAdFormat
             else -> return null
         }
     }

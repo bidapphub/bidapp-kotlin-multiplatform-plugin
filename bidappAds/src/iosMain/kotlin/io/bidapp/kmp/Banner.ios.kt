@@ -1,12 +1,13 @@
 package io.bidapp.kmp
 
-import cocoapods.bidapp.BIDAdInfo
+
 import cocoapods.bidapp.BIDBannerView
 import cocoapods.bidapp.BIDBannerViewDelegateProtocol
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSError
 import platform.UIKit.UIView
 import platform.darwin.NSObject
+
 
 @OptIn(ExperimentalForeignApi::class)
 public actual class BIDBanner actual constructor(applicationActivity: Any?, bidBannerSize: BIDAdFormat) {
@@ -18,21 +19,21 @@ public actual class BIDBanner actual constructor(applicationActivity: Any?, bidB
 
     public actual fun setBannerViewDelegate(bidBannerShow: BIDBannerShow) {
         bannerViewDelegate = object : BIDBannerViewDelegateProtocol, NSObject(){
-            override fun bannerDidClick(banner: BIDBannerView, adInfo: BIDAdInfo) {
+            override fun bannerDidClick(banner: BIDBannerView, adInfo: cocoapods.bidapp.BIDAdInfo) {
                 bidBannerShow.click(createBidAdInfo(adInfo), this@BIDBanner)
             }
 
-            override fun bannerDidDisplay(banner: BIDBannerView, adInfo: BIDAdInfo) {
+            override fun bannerDidDisplay(banner: BIDBannerView, adInfo: cocoapods.bidapp.BIDAdInfo) {
                 bidBannerShow.display(createBidAdInfo(adInfo), this@BIDBanner)
             }
 
-            override fun bannerDidLoad(banner: BIDBannerView, adInfo: BIDAdInfo) {
+            override fun bannerDidLoad(banner: BIDBannerView, adInfo: cocoapods.bidapp.BIDAdInfo) {
                 bidBannerShow.load(createBidAdInfo(adInfo), this@BIDBanner)
             }
 
             override fun bannerDidFailToDisplay(
                 banner: BIDBannerView,
-                adInfo: BIDAdInfo,
+                adInfo: cocoapods.bidapp.BIDAdInfo,
                 error: NSError
             ) {
                 bidBannerShow.failToDisplay(createBidAdInfo(adInfo), this@BIDBanner, error.localizedDescription())
@@ -67,11 +68,20 @@ public actual class BIDBanner actual constructor(applicationActivity: Any?, bidB
     }
 
     private fun createBanner(bidBannerSize: BIDAdFormat): BIDBannerView? {
-        return if (bidBannerSize.isBanner_320x50()) BIDBannerView.bannerWithFormat(cocoapods.bidapp.BIDAdFormat.banner_320x50 as cocoapods.bidapp.BIDAdFormat, bannerViewDelegate!!)
-        else if (bidBannerSize.isBanner_300x250()) BIDBannerView.bannerWithFormat(cocoapods.bidapp.BIDAdFormat.banner_300x250 as cocoapods.bidapp.BIDAdFormat, bannerViewDelegate!!)
-        else {
-            log("Error - incorrect banner format")
-            null
+        return when(bidBannerSize.getAdFormat()){
+            BANNER -> {
+                BIDBannerView.bannerWithFormat(cocoapods.bidapp.BIDAdFormat.banner_320x50 as cocoapods.bidapp.BIDAdFormat, bannerViewDelegate!!)
+            }
+            MREC -> {
+                BIDBannerView.bannerWithFormat(cocoapods.bidapp.BIDAdFormat.banner_300x250 as cocoapods.bidapp.BIDAdFormat, bannerViewDelegate!!)
+            }
+            LEADERBOARD -> {
+                BIDBannerView.bannerWithFormat(cocoapods.bidapp.BIDAdFormat.banner_728x90 as cocoapods.bidapp.BIDAdFormat, bannerViewDelegate!!)
+            }
+            else -> {
+                log("Error - incorrect banner format")
+                null
+            }
         }
     }
 
