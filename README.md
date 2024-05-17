@@ -85,14 +85,11 @@ plugins {
 
 * Set in the Settings file located in the shared module the pubId for Android and iOS. Additionally, you can enable or disable:
 
-Interstitial, Rewarded, Banner, Test mode, Logging
+Test mode, Logging
 
 ```kotlin
 const val pubId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
-const val isEnableInterstitial = true
-const val isEnableRewarded = true
-const val isEnableBanner = true
 const val isEnableTestMode = true
 const val isEnableLogging = true
 ```
