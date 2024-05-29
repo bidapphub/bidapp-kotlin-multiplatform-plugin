@@ -5,4 +5,5 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform).apply(false)
     alias(libs.plugins.kotlinCocoapods).apply(false)
     alias(libs.plugins.composemulti).apply(false)
+    alias(libs.plugins.compose.compiler).apply(false)
 }

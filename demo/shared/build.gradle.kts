@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composemulti)
+    alias(libs.plugins.compose.compiler)
 }
 
 
@@ -32,6 +33,7 @@ kotlin {
         // pod("bidapp/Chartboost")
         framework {
             baseName = "shared"
+            binaryOption("bundleId", "com.bidapp.demo.shared")
             isStatic = true
         }
     }
