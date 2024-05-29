@@ -24,7 +24,8 @@ Complete integration instructions and usage guide for the Bidapp Ads Kotlin Mult
 To use Bidapp multiplatform, implement the library in the build.gradle.kts file within the commonMain section:
 
 ```groovy
-  sourceSets {
+// Latest version 0.3.0
+    sourceSets {
         commonMain.dependencies {
             implementation("io.bidapp:kmp:+")
          }
@@ -85,14 +86,11 @@ plugins {
 
 * Set in the Settings file located in the shared module the pubId for Android and iOS. Additionally, you can enable or disable:
 
-Interstitial, Rewarded, Banner, Test mode, Logging
+Test mode, Logging
 
 ```kotlin
 const val pubId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
-const val isEnableInterstitial = true
-const val isEnableRewarded = true
-const val isEnableBanner = true
 const val isEnableTestMode = true
 const val isEnableLogging = true
 ```
