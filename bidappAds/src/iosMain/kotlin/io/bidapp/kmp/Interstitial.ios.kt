@@ -13,14 +13,13 @@ import platform.darwin.NSObject
 
 
 @OptIn(ExperimentalForeignApi::class)
-public actual class BIDInterstitial actual constructor(activity : Any?)  {
+public actual class BIDInterstitial actual constructor()  {
     private var interstitial : BIDInterstitial? = BIDInterstitial()
     private var interstitialShowDelegate : BIDInterstitialDelegateProtocol? = null
     private var interstitialLoadDelegate : BIDFullscreenLoadDelegateProtocol? = null
 
 
     public actual fun showInterstitial(
-        activity: Any?,
         bidShowDelegate: BIDFullShow?
     ) {
         interstitialShowDelegate = object : BIDInterstitialDelegateProtocol, NSObject(){

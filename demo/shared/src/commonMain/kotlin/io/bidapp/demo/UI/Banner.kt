@@ -17,11 +17,16 @@ fun Banner(bidappAdsData : BIDAppAdsData, view : MutableState<Any?>){
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-            ShowBanner(bidappAdsData.getBanner()) {
+        CreateBannerPlace(bidappAdsData.getBanner()) {
                 view.value = it
             }
     }
 }
 
 @Composable
-expect fun ShowBanner(banner: BIDBanner?, onsuccess: (view: Any) -> Unit)
+expect fun CreateBannerPlace(banner: BIDBanner?, onsuccess: (view: Any) -> Unit)
+
+
+expect fun addBanner(view: Any, banner: BIDBanner?)
+
+expect fun removeBanner(view: Any)

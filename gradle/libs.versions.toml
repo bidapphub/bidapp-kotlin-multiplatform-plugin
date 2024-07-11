@@ -1,15 +1,17 @@
 [versions]
-agp = "8.4.1"
+agp = "8.4.2"
+constraintlayout = "2.1.4"
 kmp = "0.3.0"
 kotlin = "2.0.0"
 compose = "1.6.10"
 compose-material3 = "1.2.1"
 androidx-activityCompose = "1.9.0"
 com-vanniktech-maven-publish="0.28.0"
-uiAndroid = "1.7.0-beta01"
+uiAndroid = "1.7.0-beta05"
 activityKtx = "1.9.0"
 
 [libraries]
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 kmp = { module = "io.bidapp:kmp", version.ref = "kmp" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }

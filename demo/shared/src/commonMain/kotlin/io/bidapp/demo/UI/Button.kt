@@ -12,6 +12,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.bidapp.demo.Data.BIDAppAdsData
+import io.bidapp.demo.log
 
 @Composable
 fun But(text: String, enabled: Boolean, onClick: () -> Unit) {
@@ -35,7 +36,6 @@ fun But(text: String, enabled: Boolean, onClick: () -> Unit) {
 
 @Composable
 fun ButtonAds(bidappAdsData:BIDAppAdsData,
-              activityOrUIViewController : Any?,
               view: MutableState<Any?>,
               isAutoRefreshOn : MutableState<Boolean>,
               displayBanner : MutableState<Boolean>,
@@ -46,7 +46,7 @@ fun ButtonAds(bidappAdsData:BIDAppAdsData,
         enabled = isInterstitialLoad.value,
         onClick = {
             bidappAdsData.getInterstitial()
-                ?.showInterstitial(activityOrUIViewController, bidappAdsData.getFullShow())
+                ?.showInterstitial(bidappAdsData.getFullShow())
         }
     )
     But(
@@ -54,7 +54,7 @@ fun ButtonAds(bidappAdsData:BIDAppAdsData,
         enabled = isRewardedLoad.value,
         onClick = {
             bidappAdsData.getRewarded()
-                ?.showRewarded(activityOrUIViewController, bidappAdsData.getFullShow())
+                ?.showRewarded(bidappAdsData.getFullShow())
         }
     )
     But(
@@ -62,8 +62,9 @@ fun ButtonAds(bidappAdsData:BIDAppAdsData,
         enabled = true,
         onClick = {
             if (bidappAdsData.getBanner() == null) {
-                bidappAdsData.createBanner(activityOrUIViewController)
-                bidappAdsData.getBanner()?.bindBanner(view.value)
+                log("test")
+                bidappAdsData.createBanner()
+                view.value?.let { addBanner(it, bidappAdsData.getBanner()) }
             }
             bidappAdsData.getBanner()?.refresh()
         }
@@ -86,6 +87,7 @@ fun ButtonAds(bidappAdsData:BIDAppAdsData,
         enabled = bidappAdsData.getBanner() != null && displayBanner.value,
         onClick = {
             bidappAdsData.destroyBanner()
+            view.value?.let { removeBanner(it) }
             displayBanner.value = false
             isAutoRefreshOn.value = false
         }

@@ -10,11 +10,10 @@ import platform.darwin.NSObject
 
 
 @OptIn(ExperimentalForeignApi::class)
-public actual class BIDBanner actual constructor(applicationActivity: Any?, bidBannerSize: BIDAdFormat) {
+public actual class BIDBanner public actual constructor(public val bidBannerSize: BIDAdFormat) : PlatformView(
+    createBanner(bidBannerSize) as UIView) {
     private var bannerViewDelegate: BIDBannerViewDelegateProtocol? = object : BIDBannerViewDelegateProtocol, NSObject(){}
     private var banner: BIDBannerView? = createBanner(bidBannerSize)
-    private var bannerSize : BIDAdFormat? = bidBannerSize
-
 
 
     public actual fun setBannerViewDelegate(bidBannerShow: BIDBannerShow) {
@@ -67,36 +66,27 @@ public actual class BIDBanner actual constructor(applicationActivity: Any?, bidB
         bannerViewDelegate = null
     }
 
-    private fun createBanner(bidBannerSize: BIDAdFormat): BIDBannerView? {
-        return when(bidBannerSize.getAdFormat()){
-            BANNER -> {
-                BIDBannerView.bannerWithFormat(cocoapods.bidapp.BIDAdFormat.banner_320x50 as cocoapods.bidapp.BIDAdFormat, bannerViewDelegate!!)
-            }
-            MREC -> {
-                BIDBannerView.bannerWithFormat(cocoapods.bidapp.BIDAdFormat.banner_300x250 as cocoapods.bidapp.BIDAdFormat, bannerViewDelegate!!)
-            }
-            LEADERBOARD -> {
-                BIDBannerView.bannerWithFormat(cocoapods.bidapp.BIDAdFormat.banner_728x90 as cocoapods.bidapp.BIDAdFormat, bannerViewDelegate!!)
-            }
-            else -> {
-                log("Error - incorrect banner format")
-                null
-            }
-        }
-    }
-
-    public actual fun bindBanner(container: Any?) {
-        try {
-            banner?.let { (container as? UIView)?.addSubview(it) }
-        }catch (e:Exception){
-            log("Error bind banner")
-        }
-    }
-
-    public actual fun getBannerSize(): BIDAdFormat? {
-        return bannerSize
-    }
-
 
 }
+
+@OptIn(ExperimentalForeignApi::class)
+private fun createBanner(bidBannerSize: BIDAdFormat): BIDBannerView? {
+    return when(bidBannerSize.getAdFormat()){
+        BANNER -> {
+            BIDBannerView.bannerWithFormat(cocoapods.bidapp.BIDAdFormat.banner_320x50 as cocoapods.bidapp.BIDAdFormat, object : BIDBannerViewDelegateProtocol, NSObject(){})
+        }
+        MREC -> {
+            BIDBannerView.bannerWithFormat(cocoapods.bidapp.BIDAdFormat.banner_300x250 as cocoapods.bidapp.BIDAdFormat, object : BIDBannerViewDelegateProtocol, NSObject(){})
+        }
+        LEADERBOARD -> {
+            BIDBannerView.bannerWithFormat(cocoapods.bidapp.BIDAdFormat.banner_728x90 as cocoapods.bidapp.BIDAdFormat, object : BIDBannerViewDelegateProtocol, NSObject(){})
+        }
+        else -> {
+            log("Error - incorrect banner format")
+            null
+        }
+    }
+}
+
+public actual open class PlatformView(public val bannerView: UIView)
 

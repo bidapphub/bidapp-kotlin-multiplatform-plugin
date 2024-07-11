@@ -7,26 +7,29 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import io.bidapp.demo.Data.BIDAppAds
 import io.bidapp.demo.Data.BIDAppAdsData
 import io.bidapp.demo.MainView
-import io.bidapp.demo.Data.bidappInit
+
 
 
 class MainActivity : ComponentActivity() {
-    var bidappAdsData: BIDAppAdsData? = null
+    private var bidappAdsData: BIDAppAdsData? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bidappInit(this)
+        BIDAppAds.apply {
+            start(this@MainActivity.applicationContext)
+            setActivity(this@MainActivity)
+        }
         bidappAdsData = BIDAppAdsData()
-        bidappAdsData?.initialization(this)
         setContent {
             MyApplicationTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainView(bidappAdsData = bidappAdsData!!, activity = this)
+                    bidappAdsData?.let { MainView(bidappAdsData = it) }
                 }
             }
         }

@@ -8,7 +8,7 @@ import platform.Foundation.NSLog
 
 
 
-fun MainViewController(bidappAdsData: BIDAppAdsData)  = ComposeUIViewController { App(bidappAdsData, null) }
+fun MainViewController(bidappAdsData: BIDAppAdsData)  = ComposeUIViewController { App(bidappAdsData) }
 
 actual fun log(message: String) {
     NSLog("bidappMPDemo $message")

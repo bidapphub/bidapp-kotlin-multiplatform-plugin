@@ -23,7 +23,7 @@ kotlin {
         summary = "Bidapp ads for kotlin multiplatform"
         homepage = "https://github.com/bidapphub/bidapp-kotlin-multiplatform-plugin"
         version = "1.0"
-        ios.deploymentTarget = "16.0"
+        ios.deploymentTarget = "12.0"
         podfile = project.file("../iosApp/Podfile")
         pod("bidapp/AdMob")
         pod("bidapp/Unity")
@@ -64,12 +64,12 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     dependencies {
-        implementation ("io.bidapp.networks:unity:+")
+     //   implementation ("io.bidapp.networks:unity:+")
         implementation ("io.bidapp.networks:liftoff:+")
         implementation ("io.bidapp.networks:admob:+")
      //   implementation ("io.bidapp.networks:applovin:+")
      //   implementation ("io.bidapp.networks:applovinmax:+")
-     //   implementation ("io.bidapp.networks:chartboost:+")
+        implementation ("io.bidapp.networks:chartboost:+")
      //   implementation ("io.bidapp.networks:startIo:+")
      //   implementation ("io.bidapp.networks:facebook:+")
      //   implementation ("io.bidapp.networks:digitalturbine:+")

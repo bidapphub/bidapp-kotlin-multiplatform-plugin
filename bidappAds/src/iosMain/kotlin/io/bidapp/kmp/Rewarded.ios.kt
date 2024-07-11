@@ -11,12 +11,11 @@ import platform.darwin.NSObject
 
 
 @OptIn(ExperimentalForeignApi::class)
-public actual class BIDRewarded actual constructor(activity : Any?){
+public actual class BIDRewarded actual constructor(){
     private var rewarded : BIDRewarded? = BIDRewarded()
     private var rewardedShowDelegate : BIDRewardedDelegateProtocol? = null
     private var rewardedLoadDelegate : BIDFullscreenLoadDelegateProtocol? = null
     public actual fun showRewarded(
-        applicationActivity: Any?,
         bidShowDelegate: BIDFullShow?
     ) {
         rewardedShowDelegate = object : BIDRewardedDelegateProtocol, NSObject(){

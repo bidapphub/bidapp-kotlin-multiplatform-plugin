@@ -8,13 +8,13 @@ import io.bidapp.sdk.Rewarded
 
 
 
-public actual class BIDRewarded actual constructor(activity : Any?){
-    private var rewarded = createReward(activity)
+public actual class BIDRewarded actual constructor(){
+    private var rewarded = createReward(BidappAds.getActivity())
     private var loadDelegate : BIDFullscreenLoadDelegate? = null
     private var showDelegate : BIDRewardedDelegate? = null
 
-    public actual fun showRewarded(applicationActivity: Any?, bidShowDelegate : BIDFullShow?) {
-        if ((applicationActivity as? Activity) == null || rewarded == null) return
+    public actual fun showRewarded(bidShowDelegate : BIDFullShow?) {
+        if (BidappAds.getActivity() == null || rewarded == null) return
         if (bidShowDelegate != null) {
             showDelegate = object : BIDRewardedDelegate {
                 override fun allNetworksDidFailToDisplayAd() {
@@ -42,9 +42,9 @@ public actual class BIDRewarded actual constructor(activity : Any?){
                 }
 
             }
-            rewarded?.showWithDelegate(applicationActivity, showDelegate)
+            BidappAds.getActivity()?.let { rewarded?.showWithDelegate(it, showDelegate) }
         }
-        else rewarded?.showWithDelegate(applicationActivity, null)
+        else BidappAds.getActivity()?.let { rewarded?.showWithDelegate(it, null) }
     }
 
     public actual fun setLoadDelegate(bidLoadDelegate: BIDFullLoad?) {

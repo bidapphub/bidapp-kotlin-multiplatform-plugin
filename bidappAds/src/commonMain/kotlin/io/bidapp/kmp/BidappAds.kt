@@ -2,8 +2,10 @@ package io.bidapp.kmp
 
 
 public expect object BidappAds {
-    public fun start(pubId:String, bidConfiguration: BIDConfiguration, applicationContext:Any?)
+    public fun start(bidappInitSettings: BidappInitSettings)
 }
 
+
+public expect class BidappInitSettings
 
 

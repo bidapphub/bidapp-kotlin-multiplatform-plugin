@@ -13,25 +13,26 @@ import androidx.compose.ui.interop.UIKitView
 import androidx.compose.ui.unit.dp
 import io.bidapp.kmp.BIDBanner
 import io.bidapp.kmp.log
+import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.UIKit.UIView
 
 
-@OptIn(ExperimentalForeignApi::class)
+@OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
 @Composable
-actual fun ShowBanner(banner : BIDBanner?, onsuccess:(view : Any)->Unit)  {
+actual fun CreateBannerPlace(banner : BIDBanner?, onsuccess:(view : Any)->Unit)  {
     val width = remember {  mutableIntStateOf(
-        if (banner?.getBannerSize()?.isBanner_320x50() == true) 320
-        else if (banner?.getBannerSize()?.isBanner_300x250() == true) 300
-        else if (banner?.getBannerSize()?.isBanner_728x90() == true) 728
+        if (banner?.bidBannerSize?.isBanner_320x50() == true) 320
+        else if (banner?.bidBannerSize?.isBanner_300x250() == true) 300
+        else if (banner?.bidBannerSize?.isBanner_728x90() == true) 728
         else {
             log("Incorrect banner format")
             0
         }) }
     val height = remember { mutableIntStateOf(
-        if (banner?.getBannerSize()?.isBanner_320x50() == true) 50
-        else if (banner?.getBannerSize()?.isBanner_300x250() == true) 250
-        else if (banner?.getBannerSize()?.isBanner_728x90() == true) 90
+        if (banner?.bidBannerSize?.isBanner_320x50() == true) 50
+        else if (banner?.bidBannerSize?.isBanner_300x250() == true) 250
+        else if (banner?.bidBannerSize?.isBanner_728x90() == true) 90
         else {
             log("Incorrect banner format")
             0
@@ -45,12 +46,19 @@ actual fun ShowBanner(banner : BIDBanner?, onsuccess:(view : Any)->Unit)  {
         UIKitView(
             modifier = Modifier.fillMaxSize(),
             factory = {
-                val view = UIView()
-                banner?.bindBanner(view)
-                onsuccess(view)
+                val view = banner?.bannerView ?: UIView
+                addBanner(view, banner)
+                onsuccess(view as UIView)
                 view
             }
-
         )
     }
+}
+
+actual fun addBanner(view: Any, banner: BIDBanner?) {
+    banner?.bannerView?.let { (view as UIView).addSubview(it) }
+}
+
+actual fun removeBanner(view: Any) {
+    (view as UIView).removeFromSuperview()
 }

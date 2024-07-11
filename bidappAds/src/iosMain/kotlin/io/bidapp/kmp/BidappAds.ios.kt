@@ -16,22 +16,20 @@ public actual object BidappAds {
 
     @OptIn(ExperimentalForeignApi::class)
     public actual fun start(
-        pubId: String,
-        bidConfiguration: BIDConfiguration,
-        applicationContext: Any?
+        bidappInitSettings: BidappInitSettings
     ) {
         val config =  cocoapods.bidapp.BIDConfiguration()
-        if (bidConfiguration.isLoggingEnable == true) {
+        if (bidappInitSettings.bidConfiguration.isLoggingEnable == true) {
             BIDLog.logEnabled
             config.enableLogging()
         }
-        if (bidConfiguration.isTestModeEnable == true) config.enableTestMode()
-        if (!bidConfiguration.arrayNetworkSDKKey.isNullOrEmpty()) {
-            bidConfiguration.arrayNetworkSDKKey!!.forEach {
+        if (bidappInitSettings.bidConfiguration.isTestModeEnable == true) config.enableTestMode()
+        if (!bidappInitSettings.bidConfiguration.arrayNetworkSDKKey.isNullOrEmpty()) {
+            bidappInitSettings.bidConfiguration.arrayNetworkSDKKey!!.forEach {
                 if (getNetworkId(it.networkId) != null) {
                     config.setSDKKey(it.sdkKey, it.secondKey, getNetworkId(it.networkId)!!,null)
-                    if (!bidConfiguration.arrayNetworkAdTag.isNullOrEmpty()) {
-                        bidConfiguration.arrayNetworkAdTag!!.forEach { it2 ->
+                    if (!bidappInitSettings.bidConfiguration.arrayNetworkAdTag.isNullOrEmpty()) {
+                        bidappInitSettings.bidConfiguration.arrayNetworkAdTag!!.forEach { it2 ->
                             if ((it.networkId == it2.networkId) && getNetworkId(it2.networkId) != null && getAdFormat(
                                     it2.adFormat
                                 ) != null
@@ -41,6 +39,7 @@ public actual object BidappAds {
                                     getNetworkId(it2.networkId)!!,
                                     getAdFormat(it2.adFormat)!!,
                                     it2.ecpm,
+                                    it2.isInAppBidding,
                                     null
                                 )
                             }
@@ -49,7 +48,7 @@ public actual object BidappAds {
                 }
             }
         }
-        cocoapods.bidapp.BidappAds.startWithPubid(pubId, config)
+        cocoapods.bidapp.BidappAds.startWithPubid(bidappInitSettings.pubId, config)
     }
 
 
@@ -81,3 +80,5 @@ public actual object BidappAds {
     }
 
 }
+
+public actual class BidappInitSettings(public val pubId : String, public var bidConfiguration: BIDConfiguration)

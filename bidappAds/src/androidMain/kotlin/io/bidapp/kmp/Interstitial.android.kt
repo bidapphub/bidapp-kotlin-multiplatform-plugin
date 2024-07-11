@@ -9,13 +9,13 @@ import io.bidapp.sdk.BIDInterstitialDelegate
 import io.bidapp.sdk.Interstitial
 
 
-public actual class BIDInterstitial actual constructor(activity : Any?){
-    private var interstitial : Interstitial? = createInterstitial(activity)
+public actual class BIDInterstitial actual constructor(){
+    private var interstitial : Interstitial? = createInterstitial(BidappAds.getActivity())
     private var loadDelegate : BIDFullscreenLoadDelegate? = null
     private var showDelegate : BIDInterstitialDelegate? = null
 
-    public actual fun showInterstitial(activity: Any?, bidShowDelegate : BIDFullShow?) {
-        if ((activity as? Activity) == null || interstitial == null) return
+    public actual fun showInterstitial(bidShowDelegate : BIDFullShow?) {
+        if (BidappAds.getActivity() == null || interstitial == null) return
         if (bidShowDelegate!= null) {
             showDelegate = object : BIDInterstitialDelegate{
                 override fun allNetworksDidFailToDisplayAd() {
@@ -39,9 +39,9 @@ public actual class BIDInterstitial actual constructor(activity : Any?){
                 }
 
             }
-            interstitial?.showWithDelegate(activity, showDelegate)
+            BidappAds.getActivity()?.let { interstitial?.showWithDelegate(it, showDelegate) }
          }
-        else interstitial?.showWithDelegate(activity, null)
+        else BidappAds.getActivity()?.let { interstitial?.showWithDelegate(it, null) }
     }
 
     public actual fun setLoadDelegate(bidLoadDelegate: BIDFullLoad?) {
@@ -82,6 +82,7 @@ public actual class BIDInterstitial actual constructor(activity : Any?){
         return if ((activity as? Activity) == null) null
         else Interstitial(activity)
     }
+
 }
 
 

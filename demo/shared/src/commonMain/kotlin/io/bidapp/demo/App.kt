@@ -23,7 +23,7 @@ import io.bidapp.demo.UI.Banner
 import io.bidapp.kmp.getPlatformName
 
 @Composable
-fun App(bidappAdsData: BIDAppAdsData, activityOrUIViewController: Any?) {
+fun App(bidappAdsData: BIDAppAdsData) {
     var adsEvents: AdsEvents? by remember { mutableStateOf(null) }
     val isAutoRefreshOn = remember { mutableStateOf(false) }
     val displayBanner = remember { mutableStateOf(false) }
@@ -47,7 +47,7 @@ fun App(bidappAdsData: BIDAppAdsData, activityOrUIViewController: Any?) {
                 }
 
                 override fun loadBanner(networkID: Int?) {
-                    if (io.bidapp.kmp.getPlatformName() == "Android" && networkID == 7) requestLayout(view.value)
+                    if (getPlatformName() == "Android" && networkID == 7) requestLayout(view.value)
                 }
             }
             bidappAdsData.adsEvents = adsEvents
@@ -55,7 +55,7 @@ fun App(bidappAdsData: BIDAppAdsData, activityOrUIViewController: Any?) {
     }
     DisposableEffect(Unit) {
         onDispose {
-            if (io.bidapp.kmp.getPlatformName() == "Android") {
+            if (getPlatformName() == "Android") {
                 bidappAdsData.destroy()
             }
         }
@@ -68,7 +68,6 @@ fun App(bidappAdsData: BIDAppAdsData, activityOrUIViewController: Any?) {
         Logo()
         ButtonAds(
             bidappAdsData,
-            activityOrUIViewController,
             view,
             isAutoRefreshOn,
             displayBanner,

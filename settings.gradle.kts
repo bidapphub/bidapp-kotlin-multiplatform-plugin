@@ -4,14 +4,21 @@ pluginManagement {
         google()
         gradlePluginPortal()
         mavenCentral()
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+        maven {
+            url = uri("https://cboost.jfrog.io/artifactory/chartboost-ads/")
+        }
+
+            maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
 
 dependencyResolutionManagement {
     repositories {
         google()
-        mavenCentral()
+        maven {
+            url = uri("https://cboost.jfrog.io/artifactory/chartboost-ads/")
+        }
+            mavenCentral()
     }
 }
 

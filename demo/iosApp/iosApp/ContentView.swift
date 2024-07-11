@@ -4,12 +4,11 @@ import AppTrackingTransparency
 
 
 struct ComposeView: UIViewControllerRepresentable {
-    @State private var bidappAdsData = BIDAppAdsData()
     init() {
             setupAds()
         }
     func makeUIViewController(context: Context) -> UIViewController {
-        Main_iosKt.MainViewController(bidappAdsData: bidappAdsData)
+        Main_iosKt.MainViewController(bidappAdsData: BIDAppAdsData())
     }
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
  
@@ -19,13 +18,12 @@ struct ComposeView: UIViewControllerRepresentable {
             let deadlineTime = DispatchTime.now() + .seconds(1)
             DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
                 ATTrackingManager.requestTrackingAuthorization { _ in
-                    BIDAppInitKt.bidappInit(activity: nil)
+                    BIDAppAds.shared.start()
                 }
             }
         } else {
-            BIDAppInitKt.bidappInit(activity: nil)
+            BIDAppAds.shared.start()
         }
-        bidappAdsData.initialization(activity: nil)
     }
 }
 

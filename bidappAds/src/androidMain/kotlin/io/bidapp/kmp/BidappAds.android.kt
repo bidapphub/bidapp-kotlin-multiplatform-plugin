@@ -1,10 +1,11 @@
 package io.bidapp.kmp
 
+import android.app.Activity
 import android.content.Context
 import io.bidapp.sdk.AdFormat
-import io.bidapp.sdk.BIDConfiguration
 import io.bidapp.sdk.BIDNetworkId
 import io.bidapp.sdk.BidappAds
+import java.lang.ref.WeakReference
 
 
 public actual object BidappAds {
@@ -19,24 +20,20 @@ public actual object BidappAds {
     private val FacebookId = 10
     private val MyTargetId = 11
     private val YandexId = 12
-    public actual fun start(
-        pubId: String,
-        bidConfiguration: io.bidapp.kmp.BIDConfiguration,
-        applicationContext: Any?
-    ) {
-
-        val config = BIDConfiguration()
-        if (bidConfiguration.isLoggingEnable == true) {
+    private var activity : WeakReference<Activity>? = null
+    public actual fun start(bidappInitSettings: BidappInitSettings) {
+        val config = io.bidapp.sdk.BIDConfiguration()
+        if (bidappInitSettings.bidConfiguration.isLoggingEnable == true) {
             BIDLog.logEnabled = true
             config.enableLogging()
         }
-        if (bidConfiguration.isTestModeEnable == true) config.enableTestMode()
-        if (!bidConfiguration.arrayNetworkSDKKey.isNullOrEmpty()) {
-            bidConfiguration.arrayNetworkSDKKey!!.forEach {
+        if (bidappInitSettings.bidConfiguration.isTestModeEnable == true) config.enableTestMode()
+        if (!bidappInitSettings.bidConfiguration.arrayNetworkSDKKey.isNullOrEmpty()) {
+            bidappInitSettings.bidConfiguration.arrayNetworkSDKKey!!.forEach {
                 if (getNetworkId(it.networkId) != null) {
                     config.setSDKKey(it.sdkKey, getNetworkId(it.networkId)!!, it.secondKey)
-                    if (!bidConfiguration.arrayNetworkAdTag.isNullOrEmpty()) {
-                        bidConfiguration.arrayNetworkAdTag!!.forEach { it2 ->
+                    if (!bidappInitSettings.bidConfiguration.arrayNetworkAdTag.isNullOrEmpty()) {
+                        bidappInitSettings.bidConfiguration.arrayNetworkAdTag!!.forEach { it2 ->
                             if ((it.networkId == it2.networkId) && getNetworkId(it2.networkId) != null && getAdFormat(
                                     it2.adFormat
                                 ) != null
@@ -45,7 +42,8 @@ public actual object BidappAds {
                                     it2.adTag,
                                     getNetworkId(it2.networkId)!!,
                                     getAdFormat(it2.adFormat)!!,
-                                    it2.ecpm
+                                    it2.ecpm,
+                                    it2.isInAppBidding
                                 )
                             }
                         }
@@ -53,12 +51,12 @@ public actual object BidappAds {
                 }
             }
         }
-        val context = applicationContext as? Context
+        val context = bidappInitSettings.applicationContext as? Context
         if (context == null) {
             log("start failed. Error: context is null")
             return
         }
-        BidappAds.start(pubId, config, context)
+        BidappAds.start(bidappInitSettings.pubId, config, context)
     }
 
     private fun getNetworkId(networkId: io.bidapp.kmp.BIDNetworkId): BIDNetworkId? {
@@ -89,5 +87,17 @@ public actual object BidappAds {
         }
     }
 
+    public fun setActivity(activity : Activity){
+        this.activity = WeakReference(activity)
+    }
+
+    public fun getActivity():Activity?{
+        return this.activity?.get()
+    }
 
 }
+
+
+
+
+public actual class BidappInitSettings(public val pubId : String, public val bidConfiguration: BIDConfiguration, public val applicationContext: Context)

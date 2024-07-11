@@ -10,7 +10,7 @@ import io.bidapp.kmp.BIDFullShow
 import io.bidapp.kmp.BIDInterstitial
 import io.bidapp.kmp.BIDRewarded
 
-class BIDAppAdsData {
+open class BIDAppAdsData {
     private var interstitial: BIDInterstitial? = null
     private var rewarded: BIDRewarded? = null
     private var banner: BIDBanner? = null
@@ -88,16 +88,16 @@ class BIDAppAdsData {
 
     }
 
-    fun initialization(activity: Any?) {
-        interstitial = BIDInterstitial(activity)
+    init {
+        interstitial = BIDInterstitial()
         interstitial?.setLoadDelegate(fullInterstitialLoad)
-        rewarded = BIDRewarded(activity)
+        rewarded = BIDRewarded()
         rewarded?.setLoadDelegate(fullRewardedLoad)
-        createBanner(activity)
+        createBanner()
     }
 
-    internal fun createBanner (activity : Any?) {
-        banner = BIDBanner(activity, BIDAdFormat.banner_320x50)
+    internal fun createBanner () {
+        banner = BIDBanner(BIDAdFormat.banner_320x50)
         bannerShow?.let { banner?.setBannerViewDelegate(it) }
     }
 
@@ -105,6 +105,7 @@ class BIDAppAdsData {
         banner?.destroy()
         banner = null
     }
+
 
     fun getInterstitial() : BIDInterstitial?{
         return interstitial
@@ -136,3 +137,5 @@ class BIDAppAdsData {
         adsEvents = null
     }
 }
+
+

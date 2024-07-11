@@ -18,9 +18,9 @@ public interface BIDFullShow  {
 
 
 public interface BIDBannerShow {
-    public fun display(info: BIDAdInfo, bidBannerView : io.bidapp.kmp.BIDBanner)
-    public fun failToDisplay(info: BIDAdInfo, bidBannerView : io.bidapp.kmp.BIDBanner, error:String)
-    public fun click(info: BIDAdInfo, bidBannerView : io.bidapp.kmp.BIDBanner)
-    public fun load(info: BIDAdInfo, bidBannerView : io.bidapp.kmp.BIDBanner)
+    public fun display(info: BIDAdInfo, bidBannerView : BIDBanner)
+    public fun failToDisplay(info: BIDAdInfo, bidBannerView : BIDBanner, error:String)
+    public fun click(info: BIDAdInfo, bidBannerView : BIDBanner)
+    public fun load(info: BIDAdInfo, bidBannerView : BIDBanner)
     public fun allNetworksFailedToDisplay(error:String)
 }

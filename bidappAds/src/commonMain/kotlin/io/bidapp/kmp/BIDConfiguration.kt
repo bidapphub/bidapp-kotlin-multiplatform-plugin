@@ -30,10 +30,10 @@ public class BIDConfiguration {
  }
 
 
- public fun setAdTag(adTag : String, networkId: BIDNetworkId, adFormat: BIDAdFormat, epcm: Double){
+ public fun setAdTag(adTag : String, networkId: BIDNetworkId, adFormat: BIDAdFormat, epcm: Double, isInAppBidding : Boolean){
   if (arrayNetworkAdTag == null)
    arrayNetworkAdTag = arrayListOf()
-   arrayNetworkAdTag!!.add(NetworkAdTag(adTag, networkId, adFormat, epcm))
+   arrayNetworkAdTag!!.add(NetworkAdTag(adTag, networkId, adFormat, epcm, isInAppBidding))
   }
 }
 
@@ -42,6 +42,6 @@ public class BIDConfiguration {
 
 
 public data class NetworkSDKKey(var sdkKey : String, var networkId : BIDNetworkId, var secondKey : String?)
-public data class NetworkAdTag(var adTag : String, var networkId : BIDNetworkId, var adFormat: BIDAdFormat, var ecpm : Double)
+public data class NetworkAdTag(var adTag : String, var networkId : BIDNetworkId, var adFormat: BIDAdFormat, var ecpm : Double, var isInAppBidding : Boolean)
 
 
