@@ -6,7 +6,6 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
-
 kotlin {
     androidTarget {
         compilations.all {
@@ -30,14 +29,14 @@ kotlin {
         pod("bidapp/Liftoff")
         // pod("bidapp/Applovin")
         // pod("bidapp/ApplovinMax")
-        // pod("bidapp/Chartboost")
+      //   pod("bidapp/Chartboost")
         framework {
             baseName = "shared"
             binaryOption("bundleId", "com.bidapp.demo.shared")
             isStatic = true
         }
     }
-    
+
     sourceSets {
         commonMain.dependencies {
             implementation(project(":bidappAds"))
@@ -46,7 +45,7 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.runtime)
             implementation(compose.components.resources)
-         }
+        }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
@@ -59,28 +58,35 @@ android {
     defaultConfig {
         minSdk = 22
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            isShrinkResources = false
+        }
+    }
+
     dependencies {
-     //   implementation ("io.bidapp.networks:unity:+")
-        implementation ("io.bidapp.networks:liftoff:+")
-        implementation ("io.bidapp.networks:admob:+")
-     //   implementation ("io.bidapp.networks:applovin:+")
-     //   implementation ("io.bidapp.networks:applovinmax:+")
-        implementation ("io.bidapp.networks:chartboost:+")
-     //   implementation ("io.bidapp.networks:startIo:+")
-     //   implementation ("io.bidapp.networks:facebook:+")
-     //   implementation ("io.bidapp.networks:digitalturbine:+")
-     //   implementation ("io.bidapp.networks:yandex:+")
-     //   implementation ("io.bidapp.networks:mytarget:+")
+        //  implementation ("io.bidapp.networks:unity:+")
+        implementation("io.bidapp.networks:liftoff:+")
+        implementation("io.bidapp.networks:admob:+")
+        //   implementation ("io.bidapp.networks:applovin:+")
+        //   implementation ("io.bidapp.networks:applovinmax:+")
+        implementation("io.bidapp.networks:chartboost:+")
+        //   implementation ("io.bidapp.networks:startIo:+")
+        //   implementation ("io.bidapp.networks:facebook:+")
+        //   implementation ("io.bidapp.networks:digitalturbine:+")
+        //   implementation ("io.bidapp.networks:yandex:+")
+        //   implementation ("io.bidapp.networks:mytarget:+")
     }
 }
 
 dependencies {
     implementation(libs.androidx.ui.android)
     implementation(libs.androidx.activity.ktx)
-
-
 }

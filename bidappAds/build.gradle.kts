@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.composemulti)
+    alias(libs.plugins.compose.compiler)
     id("maven-publish")
     id("signing")
 }
@@ -40,7 +42,9 @@ kotlin {
             implementation("io.bidapp:sdk:2.0.1")
         }
         commonMain.dependencies {
-        }
+            implementation(compose.foundation)
+            implementation(compose.runtime)
+         }
     }
 }
 android {
@@ -60,6 +64,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+}
+dependencies {
+    implementation(libs.androidx.foundation.layout.android)
 }
 
 

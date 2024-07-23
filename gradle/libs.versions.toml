@@ -1,18 +1,17 @@
 [versions]
 agp = "8.4.2"
 constraintlayout = "2.1.4"
-kmp = "0.3.0"
 kotlin = "2.0.0"
-compose = "1.6.10"
+compose = "1.7.0-alpha01"
 compose-material3 = "1.2.1"
 androidx-activityCompose = "1.9.0"
 com-vanniktech-maven-publish="0.28.0"
 uiAndroid = "1.7.0-beta05"
 activityKtx = "1.9.0"
+foundationLayoutAndroid = "1.6.8"
 
 [libraries]
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
-kmp = { module = "io.bidapp:kmp", version.ref = "kmp" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "uiAndroid" }
@@ -21,6 +20,7 @@ compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview"
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
 androidx-ui-android = { group = "androidx.compose.ui", name = "ui-android", version.ref = "uiAndroid" }
 androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activityKtx" }
+androidx-foundation-layout-android = { group = "androidx.compose.foundation", name = "foundation-layout-android", version.ref = "foundationLayoutAndroid" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

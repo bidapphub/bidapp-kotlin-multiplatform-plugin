@@ -1,27 +1,22 @@
 package io.bidapp.demo
 
 
-import android.os.Handler
-import android.os.Looper
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.util.Log
-import android.view.View
 import androidx.compose.runtime.Composable
-import androidx.core.os.postDelayed
-import io.bidapp.demo.Data.BIDAppAdsData
+import io.bidapp.core.BidappAds
 
 
-
+@SuppressLint("UnrememberedMutableState")
 @Composable
-fun MainView(bidappAdsData: BIDAppAdsData) {
-    App(bidappAdsData)
-}
-
-actual fun requestLayout(view:Any?) {
-    Handler(Looper.getMainLooper()).postDelayed(200) {
-        (view as? View)?.rootView?.requestLayout()
-    }
+fun MainView(activity: Activity) {
+    BidappAds.setActivity(activity)
+    App()
 
 }
+
+
 
 
 actual fun log(message: String) {

@@ -5,14 +5,13 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import io.bidapp.demo.Data.BIDAppAdsData
-import io.bidapp.demo.log
+import io.bidapp.compose.BIDBannerState
+import io.bidapp.demo.AdsAppData
 
 @Composable
 fun But(text: String, enabled: Boolean, onClick: () -> Unit) {
@@ -35,61 +34,49 @@ fun But(text: String, enabled: Boolean, onClick: () -> Unit) {
 
 
 @Composable
-fun ButtonAds(bidappAdsData:BIDAppAdsData,
-              view: MutableState<Any?>,
-              isAutoRefreshOn : MutableState<Boolean>,
-              displayBanner : MutableState<Boolean>,
-              isInterstitialLoad : MutableState<Boolean>,
-              isRewardedLoad : MutableState<Boolean>){
+fun ButtonAds(adsAppData: AdsAppData) {
     But(
         text = "Show Interstitial",
-        enabled = isInterstitialLoad.value,
+        enabled = adsAppData.isInterstitialLoad.value,
         onClick = {
-            bidappAdsData.getInterstitial()
-                ?.showInterstitial(bidappAdsData.getFullShow())
+            adsAppData.showInterstitial()
         }
     )
     But(
         text = "Show Rewarded",
-        enabled = isRewardedLoad.value,
+        enabled = adsAppData.isRewardedLoad.value,
         onClick = {
-            bidappAdsData.getRewarded()
-                ?.showRewarded(bidappAdsData.getFullShow())
+            adsAppData.showRewarded()
         }
     )
     But(
-        text = if (!displayBanner.value) "Show Banner" else "Refresh Banner",
+        text = if (!adsAppData.displayBanner.value) "Show Banner" else "Refresh Banner",
         enabled = true,
         onClick = {
-            if (bidappAdsData.getBanner() == null) {
-                log("test")
-                bidappAdsData.createBanner()
-                view.value?.let { addBanner(it, bidappAdsData.getBanner()) }
-            }
-            bidappAdsData.getBanner()?.refresh()
+            adsAppData.bannerState.value = BIDBannerState.ShowingWithOutAutoRefresh()
         }
     )
     But(
-        text = if (!isAutoRefreshOn.value) "Start Auto Refresh Banner" else "Stop Auto Refresh Banner",
-        enabled = displayBanner.value,
+        text = if (adsAppData.bannerState.value is BIDBannerState.ShowingWithAutoRefresh && (adsAppData.bannerState.value as BIDBannerState.ShowingWithAutoRefresh).isStopAutoRefresh()) "Start Auto Refresh Banner" else "Stop Auto Refresh Banner",
+        enabled = adsAppData.displayBanner.value,
         onClick = {
-            if (!isAutoRefreshOn.value) {
-                bidappAdsData.getBanner()?.startAutorefresh(30.0)
-                isAutoRefreshOn.value = true
+            if (adsAppData.bannerState.value is BIDBannerState.ShowingWithAutoRefresh && (adsAppData.bannerState.value as BIDBannerState.ShowingWithAutoRefresh).isStopAutoRefresh()) {
+                val startAutoRefresh = BIDBannerState.ShowingWithAutoRefresh()
+                startAutoRefresh.setInterval(30.0)
+                adsAppData.bannerState.value = startAutoRefresh
             } else {
-                bidappAdsData.getBanner()?.stopAutorefresh()
-                isAutoRefreshOn.value = false
+                val stopAutoRefresh = BIDBannerState.ShowingWithAutoRefresh()
+                stopAutoRefresh.stop(true)
+                adsAppData.bannerState.value = stopAutoRefresh
             }
         }
     )
     But(
         text = "Destroy Banner",
-        enabled = bidappAdsData.getBanner() != null && displayBanner.value,
+        enabled = adsAppData.displayBanner.value,
         onClick = {
-            bidappAdsData.destroyBanner()
-            view.value?.let { removeBanner(it) }
-            displayBanner.value = false
-            isAutoRefreshOn.value = false
+            adsAppData.bannerState.value = BIDBannerState.Destroyed
+            adsAppData.displayBanner.value = false
         }
     )
 }

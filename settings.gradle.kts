@@ -4,6 +4,7 @@ pluginManagement {
         google()
         gradlePluginPortal()
         mavenCentral()
+        mavenLocal()
         maven {
             url = uri("https://cboost.jfrog.io/artifactory/chartboost-ads/")
         }
@@ -18,7 +19,9 @@ dependencyResolutionManagement {
         maven {
             url = uri("https://cboost.jfrog.io/artifactory/chartboost-ads/")
         }
-            mavenCentral()
+        mavenLocal()
+        mavenCentral()
+
     }
 }
 
