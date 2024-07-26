@@ -45,6 +45,8 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.runtime)
             implementation(compose.components.resources)
+            implementation(libs.lifecycle.viewmodel)
+            implementation(libs.lifecycle.viewmodel.compose)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -72,12 +74,12 @@ android {
     }
 
     dependencies {
-        //  implementation ("io.bidapp.networks:unity:+")
+        implementation ("io.bidapp.networks:unity:+")
         implementation("io.bidapp.networks:liftoff:+")
         implementation("io.bidapp.networks:admob:+")
         //   implementation ("io.bidapp.networks:applovin:+")
         //   implementation ("io.bidapp.networks:applovinmax:+")
-        implementation("io.bidapp.networks:chartboost:+")
+        // implementation("io.bidapp.networks:chartboost:+")
         //   implementation ("io.bidapp.networks:startIo:+")
         //   implementation ("io.bidapp.networks:facebook:+")
         //   implementation ("io.bidapp.networks:digitalturbine:+")

@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import io.bidapp.compose.BIDEventType
 import io.bidapp.compose.Banner
 import io.bidapp.core.BIDAdFormat
@@ -22,13 +23,14 @@ import io.bidapp.demo.UI.Logo
 
 @Composable
 fun App() {
-    val adsAppData = remember { AdsAppData() }
+    val viewModelAdsData = viewModel{ AdsDataViewModel() }
+
     LaunchedEffect(Unit) {
-        adsAppData.createAdsEvents()
+        viewModelAdsData.createAdsEvents()
     }
     DisposableEffect(Unit) {
         onDispose {
-            adsAppData.destroy()
+            viewModelAdsData.destroy()
         }
     }
 
@@ -38,19 +40,19 @@ fun App() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Logo()
-        ButtonAds(adsAppData)
+        ButtonAds(viewModelAdsData)
     }
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Banner(adsAppData.bannerState.value, BIDAdFormat.banner_320x50, onEvent = { event ->
+        Banner(viewModelAdsData.bannerState, BIDAdFormat.banner_320x50, onEvent = { event ->
                 when (event) {
                     is BIDEventType.BidBannerEventTypeOnAllNetworksFailedToDisplay -> log("BidBannerEventTypeOnAllNetworksFailedToDisplay")
                     is BIDEventType.BidBannerEventTypeOnClick -> log("BidBannerEventTypeOnClick - ${event.adInfo}")
                     is BIDEventType.BidBannerEventTypeOnDisplay -> {
-                        adsAppData.displayBanner.value = true
+                        viewModelAdsData.displayBanner = true
                         log("BidBannerEventTypeOnDisplay - ${event.adInfo}")
                     }
 
@@ -61,7 +63,7 @@ fun App() {
     }
 }
 
-
+expect fun log(message: String)
 
 
 

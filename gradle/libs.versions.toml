@@ -4,11 +4,13 @@ constraintlayout = "2.1.4"
 kotlin = "2.0.0"
 compose = "1.7.0-alpha01"
 compose-material3 = "1.2.1"
-androidx-activityCompose = "1.9.0"
-com-vanniktech-maven-publish="0.28.0"
-uiAndroid = "1.7.0-beta05"
-activityKtx = "1.9.0"
+androidx-activityCompose = "1.9.1"
+com-vanniktech-maven-publish="0.29.0"
+uiAndroid = "1.7.0-beta06"
+activityKtx = "1.9.1"
 foundationLayoutAndroid = "1.6.8"
+lifecycleViewModel = "2.8.4"
+lifecycleViewModelCompose = "2.8.0"
 
 [libraries]
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
@@ -21,6 +23,8 @@ compose-material3 = { module = "androidx.compose.material3:material3", version.r
 androidx-ui-android = { group = "androidx.compose.ui", name = "ui-android", version.ref = "uiAndroid" }
 androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activityKtx" }
 androidx-foundation-layout-android = { group = "androidx.compose.foundation", name = "foundation-layout-android", version.ref = "foundationLayoutAndroid" }
+lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycleViewModel"}
+lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewModelCompose"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

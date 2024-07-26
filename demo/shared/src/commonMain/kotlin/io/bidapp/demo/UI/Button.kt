@@ -11,7 +11,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.bidapp.compose.BIDBannerState
-import io.bidapp.demo.AdsAppData
+import io.bidapp.demo.AdsDataViewModel
 
 @Composable
 fun But(text: String, enabled: Boolean, onClick: () -> Unit) {
@@ -34,49 +34,49 @@ fun But(text: String, enabled: Boolean, onClick: () -> Unit) {
 
 
 @Composable
-fun ButtonAds(adsAppData: AdsAppData) {
+fun ButtonAds(adsAppData: AdsDataViewModel) {
     But(
         text = "Show Interstitial",
-        enabled = adsAppData.isInterstitialLoad.value,
+        enabled = adsAppData.isInterstitialLoad,
         onClick = {
             adsAppData.showInterstitial()
         }
     )
     But(
         text = "Show Rewarded",
-        enabled = adsAppData.isRewardedLoad.value,
+        enabled = adsAppData.isRewardedLoad,
         onClick = {
             adsAppData.showRewarded()
         }
     )
     But(
-        text = if (!adsAppData.displayBanner.value) "Show Banner" else "Refresh Banner",
+        text = if (!adsAppData.displayBanner) "Show Banner" else "Refresh Banner",
         enabled = true,
         onClick = {
-            adsAppData.bannerState.value = BIDBannerState.ShowingWithOutAutoRefresh()
+            adsAppData.bannerState = BIDBannerState.ShowingWithOutAutoRefresh()
         }
     )
     But(
-        text = if (adsAppData.bannerState.value is BIDBannerState.ShowingWithAutoRefresh && (adsAppData.bannerState.value as BIDBannerState.ShowingWithAutoRefresh).isStopAutoRefresh()) "Start Auto Refresh Banner" else "Stop Auto Refresh Banner",
-        enabled = adsAppData.displayBanner.value,
+        text = if (adsAppData.bannerState is BIDBannerState.ShowingWithAutoRefresh && (adsAppData.bannerState as BIDBannerState.ShowingWithAutoRefresh).isStopAutoRefresh()) "Start Auto Refresh Banner" else "Stop Auto Refresh Banner",
+        enabled = adsAppData.displayBanner,
         onClick = {
-            if (adsAppData.bannerState.value is BIDBannerState.ShowingWithAutoRefresh && (adsAppData.bannerState.value as BIDBannerState.ShowingWithAutoRefresh).isStopAutoRefresh()) {
+            if (adsAppData.bannerState is BIDBannerState.ShowingWithAutoRefresh && (adsAppData.bannerState as BIDBannerState.ShowingWithAutoRefresh).isStopAutoRefresh()) {
                 val startAutoRefresh = BIDBannerState.ShowingWithAutoRefresh()
                 startAutoRefresh.setInterval(30.0)
-                adsAppData.bannerState.value = startAutoRefresh
+                adsAppData.bannerState = startAutoRefresh
             } else {
                 val stopAutoRefresh = BIDBannerState.ShowingWithAutoRefresh()
                 stopAutoRefresh.stop(true)
-                adsAppData.bannerState.value = stopAutoRefresh
+                adsAppData.bannerState = stopAutoRefresh
             }
         }
     )
     But(
         text = "Destroy Banner",
-        enabled = adsAppData.displayBanner.value,
+        enabled = adsAppData.displayBanner,
         onClick = {
-            adsAppData.bannerState.value = BIDBannerState.Destroyed
-            adsAppData.displayBanner.value = false
+            adsAppData.bannerState = BIDBannerState.Destroyed
+            adsAppData.displayBanner = false
         }
     )
 }
