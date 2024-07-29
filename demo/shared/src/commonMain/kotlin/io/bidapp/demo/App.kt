@@ -8,13 +8,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import io.bidapp.compose.BIDEventType
 import io.bidapp.compose.Banner
 import io.bidapp.core.BIDAdFormat
 import io.bidapp.demo.UI.ButtonAds
@@ -40,7 +38,9 @@ fun App() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Logo()
-        ButtonAds(viewModelAdsData)
+        ButtonAds(viewModelAdsData.buttonState, onClick = { event ->
+            viewModelAdsData.onClickEvent(event)
+        })
     }
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -48,23 +48,29 @@ fun App() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Banner(viewModelAdsData.bannerState, BIDAdFormat.banner_320x50, onEvent = { event ->
-                when (event) {
-                    is BIDEventType.BidBannerEventTypeOnAllNetworksFailedToDisplay -> log("BidBannerEventTypeOnAllNetworksFailedToDisplay")
-                    is BIDEventType.BidBannerEventTypeOnClick -> log("BidBannerEventTypeOnClick - ${event.adInfo}")
-                    is BIDEventType.BidBannerEventTypeOnDisplay -> {
-                        viewModelAdsData.displayBanner = true
-                        log("BidBannerEventTypeOnDisplay - ${event.adInfo}")
-                    }
-
-                    is BIDEventType.BidBannerEventTypeOnFailToDisplay -> log("BidBannerEventTypeOnFailToDisplay - ${event.adInfo}")
-                    is BIDEventType.BidBannerEventTypeOnLoad -> log("BidBannerEventTypeOnLoad - ${event.adInfo}")
-                }
-            })
+            viewModelAdsData.onBannerEvent(event)
+        })
     }
 }
 
-expect fun log(message: String)
 
+enum class OnClickEvent{
+    SHOW_INTERSTITIAL,
+    SHOW_REWARDED,
+    SHOW_REFRESH_BANNER,
+    START_STOP_AUTO_REFRESH_BANNER,
+    DESTROY_BANNER
+}
+
+data class StateButton(
+    var isEnableInterstitial : Boolean = false,
+    var isEnableRewarded : Boolean = false,
+    var isShowingBanner : Boolean = false,
+    var isAutoRefresh : Boolean = false
+)
+
+
+expect fun log(message: String)
 
 
 
