@@ -1,10 +1,13 @@
 package io.bidapp.compose
 
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import io.bidapp.core.BIDAdFormat
 import io.bidapp.core.BIDAdInfo
 import io.bidapp.core.BIDBanner
@@ -53,12 +56,10 @@ public fun Banner(
     onEvent: (BIDEventType) -> Unit
 ) {
     val banner = remember { BIDBanner(bidAdFormat) }
-
     if (state is BIDBannerState.NotDisplayOrDestroy){
         banner.destroy()
         return
     }
-
     val bannerViewDelegate = remember {
         object : BIDBannerShow {
             override fun display(info: BIDAdInfo, bidBannerView: BIDBanner) {
@@ -103,7 +104,14 @@ public fun Banner(
             else -> {}
         }
     }
-    NativeView(banner, modifier)
+
+    val modifierWithBannerSize = when {
+        bidAdFormat.isBanner_320x50() -> modifier.width(320.dp).height(50.dp)
+        bidAdFormat.isBanner_300x250() -> modifier.width(300.dp).height(250.dp)
+        bidAdFormat.isBanner_728x90() -> modifier.width(728.dp).height(90.dp)
+        else -> modifier
+    }
+    NativeView(banner, modifierWithBannerSize)
 }
 
 
