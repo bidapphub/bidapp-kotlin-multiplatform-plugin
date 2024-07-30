@@ -1,18 +1,15 @@
 package io.bidapp.compose
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import io.bidapp.core.BIDAdFormat
 import io.bidapp.core.BIDAdInfo
 import io.bidapp.core.BIDBanner
 import io.bidapp.core.BIDBannerShow
 import io.bidapp.core.PlatformView
-import io.bidapp.core.log
 
 @Stable
 public sealed class BIDEventType {
@@ -35,35 +32,16 @@ public sealed class BIDEventType {
 @Stable
 public sealed class BIDBannerState {
     @Stable
-    public data object NotDisplayed : BIDBannerState()
+    public data object NotDisplayOrDestroy : BIDBannerState()
 
     @Stable
-    public data object Destroyed : BIDBannerState()
+    public data object StopAutoRefresh : BIDBannerState()
 
     @Stable
-    public class ShowingWithOutAutoRefresh() : BIDBannerState()
+    public class ShowWithRefresh() : BIDBannerState()
 
     @Stable
-    public class ShowingWithAutoRefresh : BIDBannerState() {
-        private var interval: Double = 30.0
-        private var isStop: Boolean = false
-
-        public fun setInterval(interval: Double) {
-            this.interval = interval
-        }
-
-        public fun getInterval(): Double {
-            return this.interval
-        }
-
-        public fun stop(isStop: Boolean) {
-            this.isStop = isStop
-        }
-
-        public fun isStopAutoRefresh(): Boolean {
-            return this.isStop
-        }
-    }
+    public data class StartAutoRefresh(public var interval : Double) : BIDBannerState()
 }
 
 
@@ -71,6 +49,7 @@ public sealed class BIDBannerState {
 public fun Banner(
     state: BIDBannerState,
     bidAdFormat: BIDAdFormat,
+    modifier: Modifier = Modifier,
     onEvent: (BIDEventType) -> Unit
 ) {
     val banner = remember { BIDBanner(bidAdFormat) }
@@ -101,44 +80,32 @@ public fun Banner(
             }
         }
     }
-    banner.setBannerViewDelegate(bannerViewDelegate)
-    if (state !is BIDBannerState.Destroyed && state !is BIDBannerState.NotDisplayed) {
-        CreateView(banner, bidAdFormat)
-    }
-    when (state) {
-        is BIDBannerState.ShowingWithAutoRefresh -> {
-            if (state.isStopAutoRefresh()) {
+    LaunchedEffect(state) {
+        banner.setBannerViewDelegate(bannerViewDelegate)
+        when (state) {
+            is BIDBannerState.NotDisplayOrDestroy -> {
+                banner.destroy()
+            }
+
+            is BIDBannerState.ShowWithRefresh -> {
+                banner.refresh()
+            }
+
+            is BIDBannerState.StopAutoRefresh -> {
                 banner.stopAutorefresh()
-            } else {
-                banner.startAutorefresh(state.getInterval())
+            }
+
+            is BIDBannerState.StartAutoRefresh -> {
+                banner.startAutorefresh(state.interval)
             }
         }
-
-        is BIDBannerState.ShowingWithOutAutoRefresh -> {
-            banner.refresh()
-        }
-
-        is BIDBannerState.Destroyed -> {
-            banner.destroy()
-        }
-        else -> {
-            log("Undefined banner state")
-        }
     }
+    NativeView(banner, modifier)
 }
 
-@Composable
-internal fun CreateView(adView: PlatformView, bannerFormat: BIDAdFormat) {
-    Box(
-        modifier = Modifier.size(
-            if (bannerFormat.isBanner_320x50()) 320.dp else if (bannerFormat.isBanner_300x250()) 300.dp else if (bannerFormat.isBanner_728x90()) 728.dp else 0.dp,
-            if (bannerFormat.isBanner_320x50()) 50.dp else if (bannerFormat.isBanner_300x250()) 250.dp else if (bannerFormat.isBanner_728x90()) 90.dp else 0.dp,
-        )
-    ) {
-        NativeView(adView)
-    }
-}
 
 @Composable
-internal expect fun NativeView(adView: PlatformView)
+internal expect fun NativeView(adView: PlatformView, modifier: Modifier)
+
+
 

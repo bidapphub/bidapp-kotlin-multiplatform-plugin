@@ -17,7 +17,7 @@ class AdsDataViewModel : ViewModel() {
     private val ads: AppAds by lazy {
         BidappAdsImpl()
     }
-    var bannerState by mutableStateOf<BIDBannerState>(BIDBannerState.NotDisplayed)
+    var bannerState by mutableStateOf<BIDBannerState>(BIDBannerState.NotDisplayOrDestroy)
     var buttonState by mutableStateOf(StateButton())
 
     init {
@@ -46,22 +46,19 @@ class AdsDataViewModel : ViewModel() {
             OnClickEvent.SHOW_INTERSTITIAL -> ads.showInterstitial()
             OnClickEvent.SHOW_REWARDED -> ads.showRewarded()
             OnClickEvent.SHOW_REFRESH_BANNER -> bannerState =
-                BIDBannerState.ShowingWithOutAutoRefresh()
+            BIDBannerState.ShowWithRefresh()
             OnClickEvent.START_STOP_AUTO_REFRESH_BANNER -> {
-                if (bannerState is BIDBannerState.ShowingWithOutAutoRefresh || (bannerState as? BIDBannerState.ShowingWithAutoRefresh)?.isStopAutoRefresh() == true){
-                    val startAutoRefresh = BIDBannerState.ShowingWithAutoRefresh()
-                    buttonState = buttonState.copy(isAutoRefresh = true)
-                    startAutoRefresh.setInterval(30.0)
-                    bannerState = startAutoRefresh
-                } else {
-                    val stopAutoRefresh = BIDBannerState.ShowingWithAutoRefresh()
+                bannerState = if (bannerState is BIDBannerState.StartAutoRefresh) {
                     buttonState = buttonState.copy(isAutoRefresh = false)
-                    stopAutoRefresh.stop(true)
-                    bannerState = stopAutoRefresh
+                    BIDBannerState.StopAutoRefresh
+                }
+                else {
+                    buttonState = buttonState.copy(isAutoRefresh = true)
+                    BIDBannerState.StartAutoRefresh(30.0)
                 }
             }
             OnClickEvent.DESTROY_BANNER -> {
-                bannerState = BIDBannerState.Destroyed
+                bannerState = BIDBannerState.NotDisplayOrDestroy
                 buttonState = buttonState.copy(isShowingBanner = false)
             }
         }

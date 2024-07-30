@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -47,7 +48,7 @@ fun App() {
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Banner(viewModelAdsData.bannerState, BIDAdFormat.banner_320x50, onEvent = { event ->
+        Banner(viewModelAdsData.bannerState, BIDAdFormat.banner_320x50, modifier = Modifier.wrapContentSize(), onEvent = { event ->
             viewModelAdsData.onBannerEvent(event)
         })
     }

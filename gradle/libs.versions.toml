@@ -12,6 +12,7 @@ foundationLayoutAndroid = "1.6.8"
 lifecycleViewModel = "2.8.4"
 lifecycleViewModelCompose = "2.8.0"
 
+
 [libraries]
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }

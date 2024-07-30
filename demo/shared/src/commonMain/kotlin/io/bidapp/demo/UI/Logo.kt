@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import bidappads_demo.demo.shared.generated.resources.Res
 import bidappads_demo.demo.shared.generated.resources.bidapp_logo
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
