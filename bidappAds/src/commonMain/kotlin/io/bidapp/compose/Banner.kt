@@ -24,7 +24,7 @@ public sealed class BIDEventType {
     public data class BidBannerEventTypeOnFailToDisplay(override val adInfo: BIDAdInfo?) :
         BIDEventType()
     @Stable
-    public object BidBannerEventTypeOnAllNetworksFailedToDisplay : BIDEventType() {
+    public data object BidBannerEventTypeOnAllNetworksFailedToDisplay : BIDEventType() {
         override val adInfo: BIDAdInfo? = null
     }
 }
@@ -53,6 +53,12 @@ public fun Banner(
     onEvent: (BIDEventType) -> Unit
 ) {
     val banner = remember { BIDBanner(bidAdFormat) }
+
+    if (state is BIDBannerState.NotDisplayOrDestroy){
+        banner.destroy()
+        return
+    }
+
     val bannerViewDelegate = remember {
         object : BIDBannerShow {
             override fun display(info: BIDAdInfo, bidBannerView: BIDBanner) {
@@ -83,10 +89,6 @@ public fun Banner(
     LaunchedEffect(state) {
         banner.setBannerViewDelegate(bannerViewDelegate)
         when (state) {
-            is BIDBannerState.NotDisplayOrDestroy -> {
-                banner.destroy()
-            }
-
             is BIDBannerState.ShowWithRefresh -> {
                 banner.refresh()
             }
@@ -98,6 +100,7 @@ public fun Banner(
             is BIDBannerState.StartAutoRefresh -> {
                 banner.startAutorefresh(state.interval)
             }
+            else -> {}
         }
     }
     NativeView(banner, modifier)

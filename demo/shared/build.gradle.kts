@@ -29,7 +29,7 @@ kotlin {
         pod("bidapp/Liftoff")
         // pod("bidapp/Applovin")
         // pod("bidapp/ApplovinMax")
-      //   pod("bidapp/Chartboost")
+        // pod("bidapp/Chartboost")
         framework {
             baseName = "shared"
             binaryOption("bundleId", "com.bidapp.demo.shared")
@@ -79,7 +79,7 @@ android {
         implementation("io.bidapp.networks:admob:+")
         //   implementation ("io.bidapp.networks:applovin:+")
         //   implementation ("io.bidapp.networks:applovinmax:+")
-        // implementation("io.bidapp.networks:chartboost:+")
+        //   implementation("io.bidapp.networks:chartboost:+")
         //   implementation ("io.bidapp.networks:startIo:+")
         //   implementation ("io.bidapp.networks:facebook:+")
         //   implementation ("io.bidapp.networks:digitalturbine:+")
