@@ -1,8 +1,6 @@
 package io.bidapp.core
 
 
-
-
 public expect class BIDBanner(format: BIDAdFormat) : PlatformView {
     public val bidBannerSize: BIDAdFormat
     public fun setBannerViewDelegate(bidBannerShow: BIDBannerShow)

@@ -48,7 +48,7 @@ fun App() {
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Banner(viewModelAdsData.bannerState, BIDAdFormat.banner_320x50, modifier = Modifier.wrapContentSize(), onEvent = { event ->
+        Banner(modifier = Modifier.wrapContentSize(), state = viewModelAdsData.bannerState, bidAdFormat = BIDAdFormat.banner_320x50, bannerIntervalAutoRefresh = 30, onEvent = { event ->
             viewModelAdsData.onBannerEvent(event)
         })
     }

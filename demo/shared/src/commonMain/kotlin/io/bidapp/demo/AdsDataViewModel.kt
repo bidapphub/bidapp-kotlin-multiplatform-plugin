@@ -17,7 +17,7 @@ class AdsDataViewModel : ViewModel() {
     private val ads: AppAds by lazy {
         BidappAdsImpl()
     }
-    var bannerState by mutableStateOf<BIDBannerState>(BIDBannerState.NotDisplayOrDestroy)
+    var bannerState by mutableStateOf(BIDBannerState.NOT_DISPLAY_OR_DESTROY)
     var buttonState by mutableStateOf(StateButton())
 
     init {
@@ -46,19 +46,19 @@ class AdsDataViewModel : ViewModel() {
             OnClickEvent.SHOW_INTERSTITIAL -> ads.showInterstitial()
             OnClickEvent.SHOW_REWARDED -> ads.showRewarded()
             OnClickEvent.SHOW_REFRESH_BANNER -> bannerState =
-            BIDBannerState.ShowWithRefresh()
+            BIDBannerState.SHOW_OR_REFRESH
             OnClickEvent.START_STOP_AUTO_REFRESH_BANNER -> {
-                bannerState = if (bannerState is BIDBannerState.StartAutoRefresh) {
+                bannerState = if (bannerState == BIDBannerState.START_WITH_AUTO_REFRESH) {
                     buttonState = buttonState.copy(isAutoRefresh = false)
-                    BIDBannerState.StopAutoRefresh
+                    BIDBannerState.STOP_AUTO_REFRESH
                 }
                 else {
                     buttonState = buttonState.copy(isAutoRefresh = true)
-                    BIDBannerState.StartAutoRefresh(30.0)
+                    BIDBannerState.START_WITH_AUTO_REFRESH
                 }
             }
             OnClickEvent.DESTROY_BANNER -> {
-                bannerState = BIDBannerState.NotDisplayOrDestroy
+                bannerState = BIDBannerState.NOT_DISPLAY_OR_DESTROY
                 buttonState = buttonState.copy(isShowingBanner = false)
             }
         }
