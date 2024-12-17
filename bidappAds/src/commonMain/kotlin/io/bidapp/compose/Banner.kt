@@ -33,15 +33,15 @@ public sealed class BIDEventType {
 }
 
 @Stable
-public enum class BIDBannerState {
+public sealed class BIDBannerState {
     @Stable
-     NOT_DISPLAY_OR_DESTROY,
+    public object NotDisplayOrDestroy : BIDBannerState()
     @Stable
-     STOP_AUTO_REFRESH,
+    public object StopAutoRefresh : BIDBannerState()
     @Stable
-     START_WITH_AUTO_REFRESH,
+    public object StartWithAutoRefresh : BIDBannerState()
     @Stable
-     SHOW_OR_REFRESH
+    public class ShowOrRefresh : BIDBannerState()
 }
 
 
@@ -55,7 +55,7 @@ public fun Banner(
     onEvent: (BIDEventType) -> Unit
 ) {
     val banner = remember { BIDBanner(bidAdFormat) }
-    if (state == BIDBannerState.NOT_DISPLAY_OR_DESTROY){
+    if (state == BIDBannerState.NotDisplayOrDestroy){
         banner.destroy()
         return
     }
@@ -89,15 +89,14 @@ public fun Banner(
     LaunchedEffect(state) {
         banner.setBannerViewDelegate(bannerViewDelegate)
         when (state) {
-            BIDBannerState.SHOW_OR_REFRESH -> {
+            is BIDBannerState.ShowOrRefresh -> {
                 banner.refresh()
             }
-
-            BIDBannerState.STOP_AUTO_REFRESH -> {
+            is BIDBannerState.StopAutoRefresh -> {
                 banner.stopAutorefresh()
             }
 
-            BIDBannerState.START_WITH_AUTO_REFRESH -> {
+            is BIDBannerState.StartWithAutoRefresh -> {
                 banner.startAutorefresh(bannerIntervalAutoRefresh.toDouble())
             }
             else -> {}
