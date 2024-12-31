@@ -19,6 +19,10 @@ public actual object BidappAds {
     private val FacebookId = 10
     private val MyTargetId = 11
     private val YandexId = 12
+    private val BigoAdsId = 13
+    private val IronSourceId = 14
+    private val MintegralId = 15
+    private val InMobiId = 16
     private var activity : WeakReference<Activity>? = null
     public actual fun start(pubID : String, bidConfiguration: BIDConfiguration) {
         val config = io.bidapp.sdk.BIDConfiguration()
@@ -39,6 +43,7 @@ public actual object BidappAds {
                             ) {
                                 config.setAdTag(
                                     it2.adTag,
+                                    it2.secondTag,
                                     getNetworkId(it2.networkId)!!,
                                     getAdFormat(it2.adFormat)!!,
                                     it2.ecpm,
@@ -71,6 +76,10 @@ public actual object BidappAds {
             FacebookId -> BIDNetworkId.Facebook
             MyTargetId -> BIDNetworkId.MyTarget
             YandexId -> BIDNetworkId.Yandex
+            BigoAdsId -> BIDNetworkId.BigoAds
+            IronSourceId -> BIDNetworkId.IronSource
+            MintegralId -> BIDNetworkId.Mintegral
+            InMobiId -> BIDNetworkId.InMobi
             else -> null
         }
     }

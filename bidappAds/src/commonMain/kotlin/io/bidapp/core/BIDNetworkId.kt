@@ -24,6 +24,10 @@ public class BIDNetworkId {
        private const val FacebookId = 10
        private const val MyTargetId = 11
        private const val YandexId = 12
+       private const val BigoAdsId = 13
+       private const val IronSourceId = 14
+       private const val MintegralId = 15
+       private const val InMobiId = 16
        public val Applovin: BIDNetworkId = BIDNetworkId().setNetwork(ApplovinId)
        public val ApplovinMax: BIDNetworkId = BIDNetworkId().setNetwork(ApplovinMaxId)
        public val Unity: BIDNetworkId = BIDNetworkId().setNetwork(UnityId)
@@ -35,5 +39,9 @@ public class BIDNetworkId {
        public val Facebook: BIDNetworkId = BIDNetworkId().setNetwork(FacebookId)
        public val MyTarget: BIDNetworkId = BIDNetworkId().setNetwork(MyTargetId)
        public val Yandex: BIDNetworkId = BIDNetworkId().setNetwork(YandexId)
+       public val BigoAds: BIDNetworkId = BIDNetworkId().setNetwork(BigoAdsId)
+       public val IronSource: BIDNetworkId = BIDNetworkId().setNetwork(IronSourceId)
+       public val Mintergral: BIDNetworkId = BIDNetworkId().setNetwork(MintegralId)
+       public val InMobi: BIDNetworkId = BIDNetworkId().setNetwork(InMobiId)
     }
 }

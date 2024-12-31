@@ -14,6 +14,10 @@ public actual object BidappAds {
     private val StartIoId = 8
     private val DigitalTurbineId = 9
     private val FacebookId = 10
+    private val BigoAdsId = 13
+    private val IronSourceId = 14
+    private val MintegralId = 15
+    private val InMobiId = 16
 
     @OptIn(ExperimentalForeignApi::class)
     public actual fun start(pubID : String, bidConfiguration: BIDConfiguration)
@@ -63,6 +67,10 @@ public actual object BidappAds {
             StartIoId -> 8
             DigitalTurbineId -> 9
             FacebookId -> 10
+            BigoAdsId -> 13
+            IronSourceId -> 14
+            MintegralId -> 15
+            InMobiId -> 16
             else -> null
         }
     }

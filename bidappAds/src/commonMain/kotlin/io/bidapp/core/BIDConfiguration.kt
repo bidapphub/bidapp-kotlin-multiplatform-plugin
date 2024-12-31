@@ -3,6 +3,7 @@ package io.bidapp.core
 public class BIDConfiguration {
  public var isLoggingEnable : Boolean? = null
  public var isTestModeEnable : Boolean? = null
+
  internal var arrayNetworkSDKKey : ArrayList<NetworkSDKKey>? = null
  internal var arrayNetworkAdTag : ArrayList<NetworkAdTag>? = null
 
@@ -30,10 +31,10 @@ public class BIDConfiguration {
  }
 
 
- public fun setAdTag(adTag : String, networkId: BIDNetworkId, adFormat: BIDAdFormat, epcm: Double, isInAppBidding : Boolean){
+ public fun setAdTag(adTag : String, secondTag: String? = null, networkId: BIDNetworkId, adFormat: BIDAdFormat, epcm: Double, isInAppBidding : Boolean){
   if (arrayNetworkAdTag == null)
    arrayNetworkAdTag = arrayListOf()
-   arrayNetworkAdTag!!.add(NetworkAdTag(adTag, networkId, adFormat, epcm, isInAppBidding))
+   arrayNetworkAdTag!!.add(NetworkAdTag(adTag, secondTag, networkId, adFormat, epcm, isInAppBidding))
   }
 }
 
@@ -42,6 +43,6 @@ public class BIDConfiguration {
 
 
 public data class NetworkSDKKey(var sdkKey : String, var networkId : BIDNetworkId, var secondKey : String?)
-public data class NetworkAdTag(var adTag : String, var networkId : BIDNetworkId, var adFormat: BIDAdFormat, var ecpm : Double, var isInAppBidding : Boolean)
+public data class NetworkAdTag(var adTag : String, var secondTag : String? = null, var networkId : BIDNetworkId, var adFormat: BIDAdFormat, var ecpm : Double, var isInAppBidding : Boolean)
 
 
