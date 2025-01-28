@@ -10,6 +10,9 @@ Pod::Spec.new do |spec|
     spec.libraries                = 'c++'
     spec.ios.deployment_target    = '12.0'
     spec.dependency 'bidapp/AdMob'
+    spec.dependency 'bidapp/Applovin'
+    spec.dependency 'bidapp/ApplovinMax'
+    spec.dependency 'bidapp/Chartboost'
     spec.dependency 'bidapp/Liftoff'
     spec.dependency 'bidapp/Unity'
                 

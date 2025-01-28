@@ -27,9 +27,9 @@ kotlin {
         pod("bidapp/AdMob")
         pod("bidapp/Unity")
         pod("bidapp/Liftoff")
-        // pod("bidapp/Applovin")
-        // pod("bidapp/ApplovinMax")
-        // pod("bidapp/Chartboost")
+        pod("bidapp/Applovin")
+        pod("bidapp/ApplovinMax")
+        pod("bidapp/Chartboost")
         framework {
             baseName = "shared"
             binaryOption("bundleId", "com.bidapp.demo.shared")
