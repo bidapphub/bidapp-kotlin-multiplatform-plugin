@@ -30,6 +30,14 @@ kotlin {
         pod("bidapp/Applovin")
         pod("bidapp/ApplovinMax")
         pod("bidapp/Chartboost")
+        pod("bidapp/StartApp")
+        pod("bidapp/Fyber")
+        pod("bidapp/Facebook")
+//        pod("bidapp/Bigo")
+//        pod("bidapp/Mintegral")
+//        pod("bidapp/InMobi")
+//        pod("bidapp/IronSource")
+//        pod("bidapp/Smaato")
         framework {
             baseName = "shared"
             binaryOption("bundleId", "com.bidapp.demo.shared")
@@ -89,6 +97,8 @@ android {
         implementation ("io.bidapp.networks:inmobi:+")
         implementation ("io.bidapp.networks:ironsource:+")
         implementation ("io.bidapp.networks:mintegral:+")
+        implementation ("io.bidapp.networks:smaato:+")
+        implementation ("io.bidapp.networks:pangle:+")
     }
 }
 

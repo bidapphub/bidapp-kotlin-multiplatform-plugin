@@ -39,7 +39,7 @@ kotlin {
     sourceSets {
         androidMain.dependencies {
             implementation(libs.androidx.constraintlayout)
-            implementation("io.bidapp:sdk:2.4.0")
+            implementation("io.bidapp:sdk:2.5.0")
         }
         commonMain.dependencies {
             implementation(compose.foundation)

@@ -13,7 +13,10 @@ Pod::Spec.new do |spec|
     spec.dependency 'bidapp/Applovin'
     spec.dependency 'bidapp/ApplovinMax'
     spec.dependency 'bidapp/Chartboost'
+    spec.dependency 'bidapp/Facebook'
+    spec.dependency 'bidapp/Fyber'
     spec.dependency 'bidapp/Liftoff'
+    spec.dependency 'bidapp/StartApp'
     spec.dependency 'bidapp/Unity'
                 
     if !Dir.exist?('build/cocoapods/framework/shared.framework') || Dir.empty?('build/cocoapods/framework/shared.framework')
