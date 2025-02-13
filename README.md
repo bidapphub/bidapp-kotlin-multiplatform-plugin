@@ -24,7 +24,7 @@ Complete integration instructions and usage guide for the Bidapp Ads Kotlin Mult
 To use Bidapp multiplatform, implement the library in the build.gradle.kts file within the commonMain section:
 
 ```groovy
-// Latest version 0.8.1
+// Latest version 0.8.2
     sourceSets {
         commonMain.dependencies {
             implementation("io.bidapp:kmp:+")
